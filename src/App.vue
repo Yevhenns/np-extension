@@ -1,9 +1,39 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
+
+const API_KEY = import.meta.env.VITE_API_KEY;
+
+const info = ref(null);
+console.log(info);
+
+const requestBody = {
+  apiKey: API_KEY,
+  modelName: 'TrackingDocument',
+  calledMethod: 'getStatusDocuments',
+  methodProperties: {
+    Documents: [
+      {
+        DocumentNumber: '20400391438881',
+      },
+    ],
+  },
+};
+const fetchInfo = async () => {
+    fetch('https://api.novaposhta.ua/v2.0/json/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody),
+    })
+      .then(response => response.json())
+      .then(data => info.value = data)
+}
 </script>
 
 <template>
   <div>
+    <button v-on:click="fetchInfo()">Fetch</button>
+    <p>{{info}}</p>
     <a href="https://vite.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
