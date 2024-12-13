@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { getInfo } from './api/getInfo';
-import AppButton from './components/shared/App-Button.vue';
+import AppForm from './components/App-Form.vue';
 
 const info = ref<TrackingDocument | null>(null);
 
@@ -15,7 +15,7 @@ const setInfoData = async () => {
 
 <template>
   <div>
-    <AppButton @click="setInfoData">Пошук</AppButton>
+    <AppForm :submitForm="setInfoData" />
     <p>{{ info }}</p>
     <p>Статус: {{ info?.Status }}</p>
     <p>Адреса отримувача: {{ info?.WarehouseRecipient }}</p>
