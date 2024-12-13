@@ -1,44 +1,58 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { FetchInfoProps } from '../api/getInfo';
 
-defineProps<{ submitForm: () => Promise<void> }>();
+defineProps<{
+  setInfoData: ({
+    documentNumber,
+    phoneNumber,
+  }: FetchInfoProps) => Promise<void>;
+}>();
 
-const parcelNumber = ref('');
+const documentNumber = ref('');
 const phoneNumber = ref('');
 </script>
 
 <template>
   <form class="form">
-    <span>Номер посилки: {{ parcelNumber }}</span>
-    <span>Номер телефону: {{ phoneNumber }}</span>
+    <label for="documentNumber"
+      >* Номер ТТН
+      <div class="input-wrapper">
+        <input
+          class="input"
+          id="documentNumber"
+          placeholder="Номер"
+          v-model="documentNumber"
+        />
+        <button class="button-close" type="button" @click="documentNumber = ''">
+          X
+        </button>
+      </div></label
+    >
 
-    <label for="parcelNumber">* Номер</label>
-    <div class="input-wrapper">
-      <input
-        class="input"
-        id="parcelNumber"
-        placeholder="Номер"
-        v-model="parcelNumber"
-      />
-      <button class="button-close" type="button" @click="parcelNumber = ''">
-        X
-      </button>
-    </div>
+    <label for="phoneNumber"
+      >Номер телефону відправника/одержувача
+      <div class="input-wrapper">
+        <input
+          class="input"
+          id="phoneNumber"
+          placeholder="Номер"
+          v-model="phoneNumber"
+        />
+        <button class="button-close" type="button" @click="phoneNumber = ''">
+          X
+        </button>
+      </div></label
+    >
 
-    <label for="phoneNumber">Номер</label>
-    <div class="input-wrapper">
-      <input
-        class="input"
-        id="phoneNumber"
-        placeholder="Номер"
-        v-model="phoneNumber"
-      />
-      <button class="button-close" type="button" @click="phoneNumber = ''">
-        X
-      </button>
-    </div>
     <p>* обов'язкове поле</p>
-    <button class="button" type="button" @click="submitForm">Пошук</button>
+    <button
+      class="button"
+      type="button"
+      @click="setInfoData({ documentNumber, phoneNumber })"
+    >
+      Пошук
+    </button>
   </form>
 </template>
 

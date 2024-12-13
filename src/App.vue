@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { getInfo } from './api/getInfo';
+import { FetchInfoProps, getInfo } from './api/getInfo';
 import AppForm from './components/App-Form.vue';
 import AppInfoList from './components/App-InfoList.vue';
 import AppHeader from './components/App-Header.vue';
@@ -9,10 +9,11 @@ import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);
 
-const setInfoData = async () => {
+const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
   try {
     const data = await getInfo({
-      documentNumber: '20400391438881',
+      documentNumber,
+      phoneNumber,
     });
     if (data) {
       info.value = data;
@@ -29,7 +30,7 @@ const setInfoData = async () => {
 <template>
   <div class="app">
     <AppHeader />
-    <AppForm :submitForm="setInfoData" />
+    <AppForm :setInfoData="setInfoData" />
     <AppInfoList :info="info" />
   </div>
 </template>

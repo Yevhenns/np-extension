@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-interface fetchInfoProps {
+export interface FetchInfoProps {
   documentNumber: string;
   phoneNumber?: string;
 }
@@ -10,7 +10,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 export const getInfo = async ({
   documentNumber,
   phoneNumber,
-}: fetchInfoProps) => {
+}: FetchInfoProps) => {
   const requestBody = {
     apiKey: API_KEY,
     modelName: 'TrackingDocument',
