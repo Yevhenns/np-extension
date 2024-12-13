@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FetchInfoProps, getInfo } from './api/getInfo';
+import AppHeader from './components/App-Header.vue';
 import AppForm from './components/App-Form.vue';
 import AppInfoList from './components/App-InfoList.vue';
-import AppHeader from './components/App-Header.vue';
-import 'vue3-toastify/dist/index.css';
 import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 const info = ref<TrackingDocument | null>(null);
 const isLoading = ref(false);
