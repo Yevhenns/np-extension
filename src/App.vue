@@ -4,13 +4,24 @@ import { getInfo } from './api/getInfo';
 import AppForm from './components/App-Form.vue';
 import AppInfoList from './components/App-InfoList.vue';
 import AppHeader from './components/App-Header.vue';
+import 'vue3-toastify/dist/index.css';
+import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);
 
 const setInfoData = async () => {
-  const data = await getInfo({ documentNumber: '20400391438881' });
-  if (data) {
-    info.value = data;
+  try {
+    const data = await getInfo({
+      documentNumber: '20400391438881',
+    });
+    if (data) {
+      info.value = data;
+    }
+  } catch (e) {
+    console.log(e);
+    toast.error(e, {
+      autoClose: 2000,
+    });
   }
 };
 </script>

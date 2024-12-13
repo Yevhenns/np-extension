@@ -30,8 +30,13 @@ export const getInfo = async ({
       'https://api.novaposhta.ua/v2.0/json/',
       requestBody
     );
-    return response.data.data[0] as TrackingDocument;
-  } catch (e) {
+    if (response.data.success) {
+      return response.data.data[0] as TrackingDocument;
+    } else {
+      throw new Error(response.data.errors);
+    }
+  } catch (e: any) {
     console.log(e);
+    throw new Error(e.message as string);
   }
 };
