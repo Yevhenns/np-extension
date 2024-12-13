@@ -49,7 +49,6 @@ defineProps<{ info: TrackingDocument | null }>();
 
 <style scoped>
 .info_list {
-  text-align: left;
   display: flex;
   flex-direction: column;
   gap: 8px;
