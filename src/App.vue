@@ -14,13 +14,23 @@ const setInfoData = async () => {
 </script>
 
 <template>
-  <div>
+  <div class="wrapper">
     <AppForm :submitForm="setInfoData" />
-    <p>{{ info }}</p>
     <p>Статус: {{ info?.Status }}</p>
-    <p>Адреса отримувача: {{ info?.WarehouseRecipient }}</p>
-    <p>Адреса відправника: {{ info?.WarehouseSender }}</p>
+    <p>Назва: {{ info?.CargoDescriptionString }}</p>
+    <h3>Інформація про одержувача</h3>
+    <p>Адреса: {{ info?.WarehouseRecipient }}</p>
+    <p>ПІБ: {{ info?.RecipientFullNameEW }}</p>
+    <p>Номер: +{{ info?.PhoneRecipient }}</p>
+    <h3>Інформація про відправника</h3>
+    <p>Адреса: {{ info?.WarehouseSender }}</p>
+    <p>ПІБ: {{ info?.SenderFullNameEW }}</p>
+    <p>Номер: +{{ info?.PhoneSender }}</p>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+  text-align: left;
+}
+</style>

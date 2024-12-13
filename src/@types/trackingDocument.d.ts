@@ -59,4 +59,9 @@ interface TrackingDocument {
   RedeliveryPaymentCardDescription: string | null;
   CreatedOnTheBasis: string | null;
   ExpressWaybillAmountToPay: string | null;
+
+  PhoneSender?: string;
+  PhoneRecipient?: string;
+  SenderFullNameEW?: string;
+  RecipientFullNameEW?: string;
 }
