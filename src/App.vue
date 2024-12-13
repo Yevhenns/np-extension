@@ -22,7 +22,6 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
     }
     isLoading.value = false;
   } catch (e) {
-    console.log(e);
     toast.error(e, {
       autoClose: 2000,
     });

@@ -36,7 +36,6 @@ export const getInfo = async ({
       throw new Error(response.data.errors);
     }
   } catch (e: any) {
-    console.log(e);
     throw new Error(e.message as string);
   }
 };
