@@ -7,6 +7,7 @@ import AppInfoList from './components/App-InfoList.vue';
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 
+// eslint-disable-next-line no-undef
 const info = ref<TrackingDocument | null>(null);
 const isLoading = ref(false);
 

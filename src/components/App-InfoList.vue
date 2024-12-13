@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppInfoListItem from './App-InfoListItem.vue';
 
+// eslint-disable-next-line no-undef
 defineProps<{ info: TrackingDocument | null }>();
 </script>
 
