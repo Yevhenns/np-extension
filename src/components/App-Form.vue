@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FetchInfoProps } from '../api/getInfo';
+import AppSpinner from './App-Spinner.vue';
 
 defineProps<{
   setInfoData: ({
     documentNumber,
     phoneNumber,
   }: FetchInfoProps) => Promise<void>;
+  isLoading: boolean;
 }>();
 
 const documentNumber = ref('');
@@ -51,7 +53,8 @@ const phoneNumber = ref('');
       type="button"
       @click="setInfoData({ documentNumber, phoneNumber })"
     >
-      Пошук
+      <AppSpinner v-if="isLoading" />
+      <span v-if="!isLoading">Пошук</span>
     </button>
   </form>
 </template>
@@ -97,5 +100,8 @@ const phoneNumber = ref('');
   border-radius: 4px;
   color: rgb(250, 250, 250);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

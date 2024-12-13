@@ -8,9 +8,11 @@ import 'vue3-toastify/dist/index.css';
 import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);
+const isLoading = ref(false);
 
 const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
   try {
+    isLoading.value = true;
     const data = await getInfo({
       documentNumber,
       phoneNumber,
@@ -18,11 +20,14 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
     if (data) {
       info.value = data;
     }
+    isLoading.value = false;
   } catch (e) {
     console.log(e);
     toast.error(e, {
       autoClose: 2000,
     });
+    isLoading.value = false;
+    info.value = null;
   }
 };
 </script>
@@ -30,7 +35,7 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
 <template>
   <div class="app">
     <AppHeader />
-    <AppForm :setInfoData="setInfoData" />
+    <AppForm :setInfoData="setInfoData" :isLoading="isLoading" />
     <AppInfoList :info="info" v-if="info" />
   </div>
 </template>
