@@ -1,25 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
-import {getInfo} from './api/getInfo'
+import { getInfo } from './api/getInfo';
+import AppButton from './components/shared/App-Button.vue';
 
 const info = ref<TrackingDocument | null>(null);
 
 const setInfoData = async () => {
   const data = await getInfo({ documentNumber: '20400391438881' });
   if (data) {
-    info.value = data
+    info.value = data;
   }
 };
 </script>
 
 <template>
   <div>
-    <button @click="setInfoData">Пошук</button>
-    <p>{{info}}</p>    
+    <AppButton @click="setInfoData">Пошук</AppButton>
+    <p>{{ info }}</p>
+    <p>Статус: {{ info?.Status }}</p>
+    <p>Адреса отримувача: {{ info?.WarehouseRecipient }}</p>
+    <p>Адреса відправника: {{ info?.WarehouseSender }}</p>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
