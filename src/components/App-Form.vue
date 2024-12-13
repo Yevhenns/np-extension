@@ -11,6 +11,7 @@ const phoneNumber = ref('');
   <form class="form">
     <span>Номер посилки: {{ parcelNumber }}</span>
     <span>Номер телефону: {{ phoneNumber }}</span>
+
     <label for="parcelNumber">* Номер</label>
     <div class="input-wrapper">
       <input
@@ -23,13 +24,19 @@ const phoneNumber = ref('');
         X
       </button>
     </div>
+
     <label for="phoneNumber">Номер</label>
-    <input
-      class="input"
-      id="phoneNumber"
-      placeholder="Номер"
-      v-model="phoneNumber"
-    />
+    <div class="input-wrapper">
+      <input
+        class="input"
+        id="phoneNumber"
+        placeholder="Номер"
+        v-model="phoneNumber"
+      />
+      <button class="button-close" type="button" @click="phoneNumber = ''">
+        X
+      </button>
+    </div>
     <p>* обов'язкове поле</p>
     <button class="button" type="button" @click="submitForm">Пошук</button>
   </form>
