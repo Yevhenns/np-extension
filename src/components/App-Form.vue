@@ -12,12 +12,17 @@ const phoneNumber = ref('');
     <span>Номер посилки: {{ parcelNumber }}</span>
     <span>Номер телефону: {{ phoneNumber }}</span>
     <label for="parcelNumber">* Номер</label>
-    <input
-      class="input"
-      id="parcelNumber"
-      placeholder="Номер"
-      v-model="parcelNumber"
-    />
+    <div class="input-wrapper">
+      <input
+        class="input"
+        id="parcelNumber"
+        placeholder="Номер"
+        v-model="parcelNumber"
+      />
+      <button class="button-close" type="button" @click="parcelNumber = ''">
+        X
+      </button>
+    </div>
     <label for="phoneNumber">Номер</label>
     <input
       class="input"
@@ -37,6 +42,10 @@ const phoneNumber = ref('');
   gap: 10px;
 }
 
+.input-wrapper {
+  position: relative;
+}
+
 .input {
   height: 32px;
   font-size: 20px;
@@ -44,7 +53,20 @@ const phoneNumber = ref('');
   border: 2px solid rgb(236, 65, 59);
   outline: none;
   padding-left: 8px;
-  padding-right: 8px;
+  padding-right: 30px;
+  width: 100%;
+}
+
+.button-close {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
 }
 
 .button {

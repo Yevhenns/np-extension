@@ -1,6 +1,6 @@
 :root {
   font-family: Inter, sans-serif;
-  line-height: 1.5;s
+  line-height: 1.5;
   font-weight: 400;
 
   color: black;
@@ -27,6 +27,10 @@ body {
   width: 100%;
 }
 
-h3, p {
+h3, p, ul {
   margin: 0;
+}
+
+ul {
+  padding-left: 16px;
 }
