@@ -60,8 +60,8 @@ interface TrackingDocument {
   CreatedOnTheBasis: string | null;
   ExpressWaybillAmountToPay: string | null;
 
-  PhoneSender?: string;
-  PhoneRecipient?: string;
-  SenderFullNameEW?: string;
-  RecipientFullNameEW?: string;
+  PhoneSender: string;
+  PhoneRecipient: string;
+  SenderFullNameEW: string;
+  RecipientFullNameEW: string;
 }

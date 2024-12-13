@@ -1,21 +1,23 @@
 <script setup lang="ts">
+import AppInfoListItem from './App-InfoListItem.vue';
+
 defineProps<{ info: TrackingDocument | null }>();
 </script>
 
 <template>
   <div class="infoList">
-    <div v-if="info?.Status">
+    <div
+      v-if="info?.Status || info?.CargoDescriptionString || info?.PaymentMethod"
+    >
       <h3>Інформація про посилку</h3>
       <ul>
-        <li>
-          <p><span>Статус: </span>{{ info?.Status }}</p>
-        </li>
-        <li v-if="info?.CargoDescriptionString">
-          <p><span>Назва: </span>{{ info?.CargoDescriptionString }}</p>
-        </li>
-        <li v-if="info?.PaymentMethod">
-          <p><span>Спосіб оплати: </span>{{ info?.PaymentMethod }}</p>
-        </li>
+        <AppInfoListItem :infoString="info.Status">Статус: </AppInfoListItem>
+        <AppInfoListItem :infoString="info.CargoDescriptionString"
+          >Назва:
+        </AppInfoListItem>
+        <AppInfoListItem :infoString="info.PaymentMethod"
+          >Спосіб оплати:
+        </AppInfoListItem>
       </ul>
     </div>
 
@@ -28,15 +30,15 @@ defineProps<{ info: TrackingDocument | null }>();
     >
       <h3>Інформація про одержувача</h3>
       <ul>
-        <li v-if="info?.WarehouseRecipient">
-          <p><span>Адреса: </span>{{ info?.WarehouseRecipient }}</p>
-        </li>
-        <li v-if="info?.WarehouseRecipient">
-          <p><span>ПІБ: </span>{{ info?.WarehouseRecipient }}</p>
-        </li>
-        <li v-if="info?.PhoneRecipient">
-          <p><span>Номер: </span>+{{ info?.PhoneRecipient }}</p>
-        </li>
+        <AppInfoListItem :infoString="info.WarehouseRecipient"
+          >Адреса:
+        </AppInfoListItem>
+        <AppInfoListItem :infoString="info.WarehouseRecipient"
+          >ПІБ:
+        </AppInfoListItem>
+        <AppInfoListItem :infoString="info.PhoneRecipient"
+          >Номер:
+        </AppInfoListItem>
       </ul>
     </div>
 
@@ -47,15 +49,15 @@ defineProps<{ info: TrackingDocument | null }>();
     >
       <h3>Інформація про відправника</h3>
       <ul>
-        <li v-if="info?.WarehouseSender">
-          <p><span>Адреса: </span>{{ info?.WarehouseSender }}</p>
-        </li>
-        <li v-if="info?.SenderFullNameEW">
-          <p><span>ПІБ: </span>{{ info?.SenderFullNameEW }}</p>
-        </li>
-        <li v-if="info?.PhoneSender">
-          <p><span>Номер: </span>+{{ info?.PhoneSender }}</p>
-        </li>
+        <AppInfoListItem :infoString="info.WarehouseSender"
+          >Адреса:
+        </AppInfoListItem>
+        <AppInfoListItem :infoString="info.SenderFullNameEW"
+          >ПІБ:
+        </AppInfoListItem>
+        <AppInfoListItem :infoString="info.PhoneSender"
+          >Номер:
+        </AppInfoListItem>
       </ul>
     </div>
   </div>
@@ -66,9 +68,5 @@ defineProps<{ info: TrackingDocument | null }>();
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  span {
-    font-weight: 600;
-  }
 }
 </style>
