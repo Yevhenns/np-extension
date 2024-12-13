@@ -5,7 +5,7 @@ export interface FetchInfoProps {
   phoneNumber?: string;
 }
 
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = import.meta.env.VITE_API_KEY as string;
 
 export const getInfo = async ({
   documentNumber,
