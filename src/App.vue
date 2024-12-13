@@ -18,6 +18,7 @@ const setInfoData = async () => {
     <AppForm :submitForm="setInfoData" />
     <p>Статус: {{ info?.Status }}</p>
     <p>Назва: {{ info?.CargoDescriptionString }}</p>
+    <p>Спосіб оплати: {{ info?.PaymentMethod }}</p>
     <h3>Інформація про одержувача</h3>
     <p>Адреса: {{ info?.WarehouseRecipient }}</p>
     <p>ПІБ: {{ info?.RecipientFullNameEW }}</p>
