@@ -31,7 +31,7 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
   <div class="app">
     <AppHeader />
     <AppForm :setInfoData="setInfoData" />
-    <AppInfoList :info="info" />
+    <AppInfoList :info="info" v-if="info" />
   </div>
 </template>
 
