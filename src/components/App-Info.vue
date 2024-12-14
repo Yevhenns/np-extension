@@ -6,7 +6,7 @@ defineProps<{ info: TrackingDocument | null }>();
 </script>
 
 <template>
-  <div class="infoList">
+  <div class="info">
     <div
       v-if="info?.Status || info?.CargoDescriptionString || info?.PaymentMethod"
     >
@@ -25,7 +25,7 @@ defineProps<{ info: TrackingDocument | null }>();
     <div
       v-if="
         info?.WarehouseRecipient ||
-        info?.WarehouseRecipient ||
+        info?.RecipientFullNameEW ||
         info?.PhoneRecipient
       "
     >
@@ -34,7 +34,7 @@ defineProps<{ info: TrackingDocument | null }>();
         <AppInfoListItem :infoString="info.WarehouseRecipient"
           >Адреса:
         </AppInfoListItem>
-        <AppInfoListItem :infoString="info.WarehouseRecipient"
+        <AppInfoListItem :infoString="info.RecipientFullNameEW"
           >ПІБ:
         </AppInfoListItem>
         <AppInfoListItem :infoString="info.PhoneRecipient"
@@ -65,7 +65,7 @@ defineProps<{ info: TrackingDocument | null }>();
 </template>
 
 <style scoped>
-.infoList {
+.info {
   display: flex;
   flex-direction: column;
   gap: 8px;
