@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FetchInfoProps } from '../api/getInfo';
-import { vMaska } from 'maska/vue';
 import AppSpinner from './App-Spinner.vue';
+import AppInput from './App-Input.vue';
 
 defineProps<{
   setInfoData: ({
@@ -13,58 +13,33 @@ defineProps<{
 }>();
 
 const documentNumber = ref('');
-const maskedDocumentNumber = ref('');
-
-const clearDocumentNumber = () => {
-  documentNumber.value = '';
-  maskedDocumentNumber.value = '';
-};
-
 const phoneNumber = ref('');
-const maskedPhoneNumber = ref('');
 
-const clearPhoneNumber = () => {
-  phoneNumber.value = '';
-  maskedPhoneNumber.value = '';
+const setDocumentNumber = (value: string) => {
+  documentNumber.value = value;
 };
 
-defineExpose({ documentNumber, phoneNumber });
+const setPhoneNumber = (value: string) => {
+  phoneNumber.value = value;
+};
 </script>
 
 <template>
   <form class="form">
-    <label for="documentNumber"
-      >* Номер ТТН
-      <div class="input-wrapper">
-        <input
-          id="documentNumber"
-          class="input"
-          v-maska:documentNumber.unmasked="'## #### #### #### ####'"
-          v-model="maskedDocumentNumber"
-          placeholder="20 9999 9999 9999 9999"
-        />
-        <button class="button-close" type="button" @click="clearDocumentNumber">
-          X
-        </button>
-      </div></label
+    <AppInput
+      @inputValue="setDocumentNumber"
+      placeholder="20 9999 9999 9999 9999"
+      id="documentNumbe"
+      mask="## #### #### #### ####"
+      >* Номер ТТН</AppInput
     >
-
-    <label for="phoneNumber"
-      >Номер телефону відправника/одержувача
-      <div class="input-wrapper">
-        <input
-          id="phoneNumber"
-          class="input"
-          v-maska:phoneNumber.unmasked="'## ### ### ## ##'"
-          v-model="maskedPhoneNumber"
-          placeholder="38 099 999 99 99"
-        />
-        <button class="button-close" type="button" @click="clearPhoneNumber">
-          X
-        </button>
-      </div></label
+    <AppInput
+      @inputValue="setPhoneNumber"
+      placeholder="38 099 999 99 99"
+      id="phoneNumber"
+      mask="## ### ### ## ##"
+      >Номер телефону відправника/одержувача</AppInput
     >
-
     <p>* обов'язкове поле</p>
     <button
       class="button"
@@ -82,33 +57,6 @@ defineExpose({ documentNumber, phoneNumber });
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-.input-wrapper {
-  position: relative;
-}
-
-.input {
-  height: 32px;
-  font-size: 20px;
-  border-radius: 4px;
-  border: 2px solid rgb(236, 65, 59);
-  outline: none;
-  padding-left: 8px;
-  padding-right: 30px;
-  width: 100%;
-}
-
-.button-close {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
 }
 
 .button {
