@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FetchInfoProps } from '../api/getInfo';
+import { vMaska } from 'maska/vue';
 import AppSpinner from './App-Spinner.vue';
 
 defineProps<{
@@ -12,7 +13,22 @@ defineProps<{
 }>();
 
 const documentNumber = ref('');
+const maskedDocumentNumber = ref('');
+
+const clearDocumentNumber = () => {
+  documentNumber.value = '';
+  maskedDocumentNumber.value = '';
+};
+
 const phoneNumber = ref('');
+const maskedPhoneNumber = ref('');
+
+const clearPhoneNumber = () => {
+  phoneNumber.value = '';
+  maskedPhoneNumber.value = '';
+};
+
+defineExpose({ documentNumber, phoneNumber });
 </script>
 
 <template>
@@ -21,12 +37,13 @@ const phoneNumber = ref('');
       >* Номер ТТН
       <div class="input-wrapper">
         <input
-          class="input"
           id="documentNumber"
-          placeholder="Номер"
-          v-model="documentNumber"
+          class="input"
+          v-maska:documentNumber.unmasked="'## #### #### #### ####'"
+          v-model="maskedDocumentNumber"
+          placeholder="20 9999 9999 9999 9999"
         />
-        <button class="button-close" type="button" @click="documentNumber = ''">
+        <button class="button-close" type="button" @click="clearDocumentNumber">
           X
         </button>
       </div></label
@@ -36,12 +53,13 @@ const phoneNumber = ref('');
       >Номер телефону відправника/одержувача
       <div class="input-wrapper">
         <input
-          class="input"
           id="phoneNumber"
-          placeholder="Номер"
-          v-model="phoneNumber"
+          class="input"
+          v-maska:phoneNumber.unmasked="'## ### ### ## ##'"
+          v-model="maskedPhoneNumber"
+          placeholder="38 099 999 99 99"
         />
-        <button class="button-close" type="button" @click="phoneNumber = ''">
+        <button class="button-close" type="button" @click="clearPhoneNumber">
           X
         </button>
       </div></label
