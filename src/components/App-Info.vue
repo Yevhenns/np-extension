@@ -2,13 +2,13 @@
 import AppInfoListItem from './App-InfoListItem.vue';
 
 // eslint-disable-next-line no-undef
-defineProps<{ info: TrackingDocument | null }>();
+defineProps<{ info: TrackingDocument }>();
 </script>
 
 <template>
   <div class="info">
     <div
-      v-if="info?.Status || info?.CargoDescriptionString || info?.PaymentMethod"
+      v-if="info.Status || info.CargoDescriptionString || info.PaymentMethod"
     >
       <h3>Інформація про посилку</h3>
       <ul>
@@ -24,9 +24,9 @@ defineProps<{ info: TrackingDocument | null }>();
 
     <div
       v-if="
-        info?.WarehouseRecipient ||
-        info?.RecipientFullNameEW ||
-        info?.PhoneRecipient
+        info.WarehouseRecipient ||
+        info.RecipientFullNameEW ||
+        info.PhoneRecipient
       "
     >
       <h3>Інформація про одержувача</h3>
@@ -44,9 +44,7 @@ defineProps<{ info: TrackingDocument | null }>();
     </div>
 
     <div
-      v-if="
-        info?.WarehouseSender || info?.SenderFullNameEW || info?.PhoneSender
-      "
+      v-if="info.WarehouseSender || info.SenderFullNameEW || info.PhoneSender"
     >
       <h3>Інформація про відправника</h3>
       <ul>
