@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FetchInfoProps } from '../api/getInfo';
-import AppSpinner from './App-Spinner.vue';
-import AppInput from './App-Input.vue';
+import AppInput from './shared/App-Input.vue';
+import AppButton from './shared/App-Button.vue';
 
 defineProps<{
   setInfoData: ({
@@ -41,14 +41,11 @@ const setPhoneNumber = (value: string) => {
       >Номер телефону відправника/одержувача</AppInput
     >
     <p>* обов'язкове поле</p>
-    <button
-      class="button"
-      type="button"
+    <AppButton
+      :isLoading="isLoading"
       @click="setInfoData({ documentNumber, phoneNumber })"
+      >Пошук</AppButton
     >
-      <AppSpinner v-if="isLoading" />
-      <span v-if="!isLoading">Пошук</span>
-    </button>
   </form>
 </template>
 
@@ -57,17 +54,5 @@ const setPhoneNumber = (value: string) => {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-.button {
-  height: 32px;
-  background-color: rgb(236, 65, 59);
-  border: none;
-  border-radius: 4px;
-  color: rgb(250, 250, 250);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 </style>
