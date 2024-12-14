@@ -13,7 +13,7 @@ export const getInfo = async ({
 }: FetchInfoProps) => {
   const requestBody = {
     apiKey: API_KEY,
-    modelName: 'TrackingDocument',
+    modelName: 'TrackingDocumentGeneral',
     calledMethod: 'getStatusDocuments',
     methodProperties: {
       Documents: [
