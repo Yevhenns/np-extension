@@ -28,9 +28,9 @@ const setPhoneNumber = (value: string) => {
   <form class="form">
     <AppInput
       @inputValue="setDocumentNumber"
-      placeholder="20 9999 9999 9999 9999"
+      placeholder="20 9999 9999 9999"
       id="documentNumber"
-      mask="## #### #### #### ####"
+      mask="## #### #### ####"
       >* Номер ТТН</AppInput
     >
     <AppInput
