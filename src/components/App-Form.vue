@@ -38,9 +38,13 @@ const setPhoneNumber = (value: string) => {
       placeholder="38 099 999 99 99"
       id="phoneNumber"
       mask="## ### ### ## ##"
-      >Номер телефону відправника/одержувача</AppInput
+      >Номер телефону</AppInput
     >
     <p>* обов'язкове поле</p>
+    <p>
+      Для отримання додаткової інформації введіть номер телефону
+      відправника/одержувача.
+    </p>
     <AppButton
       :isLoading="isLoading"
       @click="setInfoData({ documentNumber, phoneNumber })"
