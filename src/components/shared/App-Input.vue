@@ -6,6 +6,7 @@ defineProps<{
   placeholder: string;
   id: string;
   mask: string;
+  errorMessage?: string;
 }>();
 
 const emit = defineEmits(['inputValue']);
@@ -40,6 +41,9 @@ defineExpose({ unmaskedValue });
       />
       <button class="button-close" type="button" @click="clearValue">X</button>
     </div>
+    <div class="error">
+      <span>{{ errorMessage }}</span>
+    </div>
   </label>
 </template>
 
@@ -69,5 +73,10 @@ defineExpose({ unmaskedValue });
   cursor: pointer;
   width: 32px;
   height: 32px;
+}
+
+.error {
+  color: rgb(236, 65, 59);
+  height: 20px;
 }
 </style>

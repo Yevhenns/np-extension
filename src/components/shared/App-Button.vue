@@ -25,4 +25,10 @@ defineProps<{
   align-items: center;
   justify-content: center;
 }
+
+.button:disabled {
+  background-color: rgb(200, 200, 200);
+  color: rgb(150, 150, 150);
+  cursor: not-allowed;
+}
 </style>
