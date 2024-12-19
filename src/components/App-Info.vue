@@ -38,7 +38,7 @@ defineProps<{ info: TrackingDocument }>();
       v-if="
         info.CityRecipient ||
         info.WarehouseRecipient ||
-        info.RecipientFullNameEW ||
+        info.RecipientFullNameEW.trim() ||
         info.PhoneRecipient
       "
     >
