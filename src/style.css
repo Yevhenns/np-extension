@@ -1,16 +1,20 @@
+@import './variables.css';
+
 :root {
   font-family: Inter, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color: black;
-  background-color: rgb(250, 250, 250);
+  color: var(--black-color);
+  background-color: var(--main-bg);
 }
 
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -19,14 +23,16 @@ body {
   justify-content: center;
   width: 320px;
   text-align: center;
-  margin: 0 auto;  
+  margin: 0 auto;
 }
 
 #app {
   width: 100%;
 }
 
-h3, p, ul {
+h3,
+p,
+ul {
   margin: 0;
 }
 

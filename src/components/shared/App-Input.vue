@@ -48,6 +48,8 @@ defineExpose({ unmaskedValue });
 </template>
 
 <style scoped>
+@import '../../variables.css';
+
 .input-wrapper {
   position: relative;
 }
@@ -56,7 +58,7 @@ defineExpose({ unmaskedValue });
   height: 32px;
   font-size: 20px;
   border-radius: 4px;
-  border: 2px solid rgb(236, 65, 59);
+  border: var(--main-border);
   outline: none;
   padding-left: 8px;
   padding-right: 30px;

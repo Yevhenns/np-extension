@@ -14,21 +14,23 @@ defineProps<{
 </template>
 
 <style scoped>
+@import '../../variables.css';
+
 .button {
+  background-color: var(--main-color);
+  color: var(--main-bg);
   height: 32px;
-  background-color: rgb(236, 65, 59);
   border: none;
   border-radius: 4px;
-  color: rgb(250, 250, 250);
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .button:disabled {
-  background-color: rgb(200, 200, 200);
-  color: rgb(150, 150, 150);
+  background-color: var(--disabled-bg);
+  color: var(--disabled-color);
   cursor: not-allowed;
 }
 </style>

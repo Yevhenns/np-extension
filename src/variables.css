@@ -1,0 +1,8 @@
+:root {
+  --main-bg: #fafafa;
+  --main-color: #ec413b;
+  --black-color: #000000;
+  --disabled-bg: #c8c8c8;
+  --disabled-color: #969696;
+  --main-border: 2px solid var(--main-color);
+}

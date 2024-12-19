@@ -3,10 +3,12 @@
 </template>
 
 <style scoped>
+@import '../../variables.css';
+
 .spinner {
   width: 26px;
   height: 26px;
-  border: 2px solid rgb(250, 250, 250);
+  border: var(--main-border);
   border-bottom-color: transparent;
   border-radius: 50%;
   animation: rotation 1s linear infinite;
