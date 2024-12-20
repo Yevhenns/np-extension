@@ -77,20 +77,53 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       :showForm="showForm"
       :isFormShown="isFormShown"
     />
-    <AppForm
-      v-if="isFormShown"
-      :showPhone="false"
-      :setInfoData="setInfoData"
-      :isLoading="isLoading"
-    />
+    <div :class="isFormShown ? 'wrapper-shown' : 'wrapper-hidden'">
+      <AppForm
+        :class="isFormShown ? 'form-shown' : 'form-hidden'"
+        :showPhone="false"
+        :setInfoData="setInfoData"
+        :isLoading="isLoading"
+      />
+    </div>
   </div>
 </template>
 
 <style scoped>
+@import '../variables.css';
+
 .page {
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.wrapper-shown {
+  overflow: visible;
+  transition: var(--transition);
+  transform: translateY(0);
+  max-height: 100%;
+}
+
+.wrapper-hidden {
+  overflow: hidden;
+  transition: var(--transition);
+  transform: translateY(-100%);
+  visibility: hidden;
+  max-height: 0;
+}
+
+.form-shown {
+  transition: var(--transition);
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.form-hidden {
+  transition: var(--transition);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
 }
 </style>
