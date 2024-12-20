@@ -4,9 +4,11 @@
   --black-color: #000000;
   --disabled-bg: #c8c8c8;
   --disabled-color: #969696;
+  --box-shadow-clor: rgba(0, 0, 0, 0.2);
   --main-border: 2px solid var(--main-color);
   --secondary-border: 1px solid var(--disabled-color);
   --light-border: 2px solid var(--main-bg);
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --box-shadow: 0 4px 6px var(--box-shadow-clor);
+  --box-shadow-active: 0 -4px 6px var(--box-shadow-clor);
   --transition: all 250ms linear;
 }

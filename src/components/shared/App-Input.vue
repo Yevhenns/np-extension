@@ -71,6 +71,10 @@ defineExpose({ unmaskedValue });
   box-shadow: var(--box-shadow);
 }
 
+.input:focus {
+  box-shadow: var(--box-shadow-active);
+}
+
 .error {
   color: rgb(236, 65, 59);
   height: 20px;
