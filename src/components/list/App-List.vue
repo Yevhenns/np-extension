@@ -14,7 +14,6 @@ defineProps<{
 <template>
   <div>Список посилок</div>
   <p>Сторінка в розробці</p>
-
   <div class="list-wrapper">
     <AppListItem
       v-for="parcel in parcelsArray"

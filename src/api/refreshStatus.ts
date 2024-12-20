@@ -1,22 +1,20 @@
 import axios from 'axios';
 
-export interface FetchStatusProps {
-  documentNumber: string[];
+export interface RefreshStatusProps {
+  documentNumbers: string[];
 }
 
 const API_KEY = import.meta.env.VITE_API_KEY as string;
 
-export const refreshStatus = async ({ documentNumber }: FetchStatusProps) => {
+export const refreshStatus = async ({
+  documentNumbers,
+}: RefreshStatusProps) => {
   const requestBody = {
     apiKey: API_KEY,
     modelName: 'TrackingDocumentGeneral',
     calledMethod: 'getStatusDocuments',
     methodProperties: {
-      Documents: [
-        {
-          DocumentNumber: documentNumber,
-        },
-      ],
+      Documents: documentNumbers.map(DocumentNumber => ({ DocumentNumber })),
     },
   };
 
