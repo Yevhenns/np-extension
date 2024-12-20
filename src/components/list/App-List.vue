@@ -2,6 +2,7 @@
 import AppListItem from './App-ListItem.vue';
 import AppButton from '../shared/App-Button.vue';
 import { NewItem } from '../../pages/Home-Page.vue';
+import { ref } from 'vue';
 
 defineProps<{
   parcelsArray: NewItem[];
@@ -9,6 +10,8 @@ defineProps<{
   showForm: () => void;
   isFormShown: boolean;
 }>();
+
+const isLoading = ref(false);
 </script>
 
 <template>
@@ -36,7 +39,7 @@ defineProps<{
       Оновити
       <i
         class="pi pi-sync icon"
-        :class="isFormShown ? 'pi-spin' : ''"
+        :class="isLoading ? 'pi-spin' : ''"
         style="font-size: 16px"
       ></i>
     </AppButton>
