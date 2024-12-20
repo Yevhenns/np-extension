@@ -8,7 +8,7 @@
 .spinner {
   width: 26px;
   height: 26px;
-  border: var(--main-border);
+  border: var(--light-border);
   border-bottom-color: transparent;
   border-radius: 50%;
   animation: rotation 1s linear infinite;

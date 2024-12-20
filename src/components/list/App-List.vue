@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import AppForm from '../shared/App-Form.vue';
-import { toast } from 'vue3-toastify';
-import { FetchInfoProps, getInfo } from '../../api/getInfo';
 import AppListItem from './App-ListItem.vue';
+import AppButton from '../shared/App-Button.vue';
+import { FetchInfoProps, getInfo } from '../../api/getInfo';
+import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);
 const isLoading = ref(false);
+const isFormShown = ref(false);
 
 const storedParcels = localStorage.getItem('parcels');
 const parcelsToArray = ref(storedParcels ? JSON.parse(storedParcels) : []);
+
+const showForm = () => {
+  isFormShown.value = !isFormShown.value;
+};
 
 const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   try {
@@ -59,7 +65,12 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       :status="parcel.status"
     />
   </div>
+  <div class="buttons-set">
+    <AppButton @click="showForm" icon="pi-angle-down">Додати</AppButton>
+    <AppButton icon="pi-sync">Оновити</AppButton>
+  </div>
   <AppForm
+    v-if="isFormShown"
     :showPhone="false"
     :setInfoData="setInfoData"
     :isLoading="isLoading"
@@ -71,5 +82,11 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.buttons-set {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
 }
 </style>

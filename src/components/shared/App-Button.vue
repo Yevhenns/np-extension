@@ -2,7 +2,8 @@
 import AppSpinner from './App-Spinner.vue';
 
 defineProps<{
-  isLoading: boolean;
+  isLoading?: boolean;
+  icon?: string;
 }>();
 </script>
 
@@ -10,6 +11,7 @@ defineProps<{
   <button class="button" type="button">
     <AppSpinner v-if="isLoading" />
     <span v-if="!isLoading"><slot></slot></span>
+    <i class="pi" :class="icon" v-if="icon" style="font-size: 16px"></i>
   </button>
 </template>
 
@@ -25,6 +27,7 @@ defineProps<{
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 8px;
   cursor: pointer;
   transition: var(--transition);
 }
@@ -38,5 +41,9 @@ defineProps<{
   color: var(--disabled-color);
   cursor: not-allowed;
   box-shadow: none;
+}
+
+.pi {
+  margin-left: 6px;
 }
 </style>
