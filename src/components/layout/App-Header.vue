@@ -62,5 +62,6 @@ import { RouterLink } from 'vue-router';
 .nav-link.active {
   color: var(--main-bg);
   background-color: var(--main-color);
+  transform: scale(1.1);
 }
 </style>

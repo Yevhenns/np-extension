@@ -20,6 +20,12 @@ const parcelsNumbersArray = computed(() =>
 const isLoading = ref(false);
 
 const refreshParelsStatus = async () => {
+  if (parcelsNumbersArray.value.length === 0) {
+    toast.error('Немає що оновлювати', {
+      autoClose: 2000,
+    });
+    return;
+  }
   try {
     isLoading.value = true;
     const data = await refreshStatus({
