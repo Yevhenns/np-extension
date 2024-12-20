@@ -78,7 +78,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       Оновити
       <i
         class="pi pi-sync"
-        :class="isFormShown ? 'rotate' : ''"
+        :class="isFormShown ? 'pi-spin' : ''"
         style="font-size: 16px"
       ></i>
     </AppButton>
