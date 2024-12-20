@@ -40,7 +40,6 @@ const refreshParelsStatus = async () => {
 
 <template>
   <div>Список посилок</div>
-  <p>{{ parcelsNumbersArray }}</p>
   <p>Сторінка в розробці</p>
   <div class="list-wrapper">
     <AppListItem
