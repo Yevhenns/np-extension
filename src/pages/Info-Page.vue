@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
-import AppForm from '../components/info/App-Form.vue';
+import AppForm from '../components/shared/App-Form.vue';
 import AppInfo from '../components/info/App-Info.vue';
 import { toast } from 'vue3-toastify';
 
@@ -31,7 +31,7 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
 
 <template>
   <div class="page">
-    <AppForm :setInfoData="setInfoData" :isLoading="isLoading" />
+    <AppForm showPhone :setInfoData="setInfoData" :isLoading="isLoading" />
     <AppInfo :info="info" v-if="info" />
   </div>
 </template>

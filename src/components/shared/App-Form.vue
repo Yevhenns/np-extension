@@ -10,6 +10,7 @@ defineProps<{
     phoneNumber,
   }: FetchInfoProps) => Promise<void>;
   isLoading: boolean;
+  showPhone: boolean;
 }>();
 
 const documentNumber = ref('');
@@ -47,6 +48,7 @@ watch(documentNumber, setIsValid);
       >* Номер ТТН</AppInput
     >
     <AppInput
+      v-if="showPhone"
       @inputValue="setPhoneNumber"
       placeholder="38 099 999 99 99"
       id="phoneNumber"
@@ -59,7 +61,7 @@ watch(documentNumber, setIsValid);
       >Номер телефону</AppInput
     >
     <p>* обов'язкове поле</p>
-    <p>
+    <p v-if="showPhone">
       Для отримання додаткової інформації введіть номер телефону
       відправника/одержувача.
     </p>
@@ -77,5 +79,6 @@ watch(documentNumber, setIsValid);
   display: flex;
   flex-direction: column;
   gap: 4px;
+  text-align: left;
 }
 </style>
