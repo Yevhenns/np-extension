@@ -26,6 +26,6 @@
 }
 
 .button-close:hover .pi-times {
-  transform: scale(1.05);
+  transform: rotate(90deg);
 }
 </style>
