@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import AppForm from '../shared/App-Form.vue';
 import AppListItem from './App-ListItem.vue';
 import AppButton from '../shared/App-Button.vue';
@@ -10,8 +10,20 @@ const info = ref<TrackingDocument | null>(null);
 const isLoading = ref(false);
 const isFormShown = ref(false);
 
-const storedParcels = localStorage.getItem('parcels');
-const parcelsToArray = ref(storedParcels ? JSON.parse(storedParcels) : []);
+interface NewItem {
+  number: string;
+  status: string;
+}
+
+const parcelsArray = ref<NewItem[]>([]);
+
+const getParcelsFromLS = () => {
+  const storedParcels = localStorage.getItem('parcels');
+  const parcels = storedParcels ? JSON.parse(storedParcels) : [];
+  parcelsArray.value = parcels as NewItem[];
+};
+
+onMounted(() => getParcelsFromLS());
 
 const showForm = () => {
   isFormShown.value = !isFormShown.value;
@@ -24,23 +36,20 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       documentNumber,
     });
     if (data) {
-      // info.value = data;
-      const storedParcels = localStorage.getItem('parcels');
-      console.log('storedParcels', storedParcels);
-
-      const parcelsToArray = storedParcels ? JSON.parse(storedParcels) : [];
-      const newObject = {
+      const newObject: NewItem = {
         number: data.Number,
         status: data.Status,
       };
-      console.log('parcelsToArray', parcelsToArray);
-
-      parcelsToArray.push(newObject);
-      console.log('modifiedParcelsArray', parcelsToArray);
-
-      console.log('parcelsToArray', parcelsToArray);
-
-      localStorage.setItem('parcels', JSON.stringify(parcelsToArray));
+      getParcelsFromLS();
+      if (parcelsArray.value.some(item => item.number === newObject.number)) {
+        isLoading.value = false;
+        toast.error('Посилка вже у списку', {
+          autoClose: 2000,
+        });
+        return;
+      }
+      parcelsArray.value.push(newObject);
+      localStorage.setItem('parcels', JSON.stringify(parcelsArray.value));
     }
     isLoading.value = false;
   } catch (e) {
@@ -59,7 +68,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
 
   <div class="list-wrapper">
     <AppListItem
-      v-for="parcel in parcelsToArray"
+      v-for="parcel in parcelsArray"
       :key="parcel.number"
       :number="parcel.number"
       :status="parcel.status"
