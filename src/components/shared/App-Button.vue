@@ -3,15 +3,13 @@ import AppSpinner from './App-Spinner.vue';
 
 defineProps<{
   isLoading?: boolean;
-  icon?: string;
 }>();
 </script>
 
 <template>
   <button class="button" type="button">
     <AppSpinner v-if="isLoading" />
-    <span v-if="!isLoading"><slot></slot></span>
-    <i class="pi" :class="icon" v-if="icon" style="font-size: 16px"></i>
+    <slot v-if="!isLoading"></slot>
   </button>
 </template>
 

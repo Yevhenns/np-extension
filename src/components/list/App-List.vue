@@ -66,8 +66,22 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
     />
   </div>
   <div class="buttons-set">
-    <AppButton @click="showForm" icon="pi-angle-down">Додати</AppButton>
-    <AppButton icon="pi-sync">Оновити</AppButton>
+    <AppButton @click="showForm">
+      Додати
+      <i
+        class="pi pi-angle-down"
+        :class="isFormShown ? 'rotate' : ''"
+        style="font-size: 16px"
+      ></i>
+    </AppButton>
+    <AppButton icon="pi-sync">
+      Оновити
+      <i
+        class="pi pi-sync"
+        :class="isFormShown ? 'rotate' : ''"
+        style="font-size: 16px"
+      ></i>
+    </AppButton>
   </div>
   <AppForm
     v-if="isFormShown"
@@ -78,6 +92,8 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
 </template>
 
 <style>
+@import '../../variables.css';
+
 .list-wrapper {
   display: flex;
   flex-direction: column;
@@ -88,5 +104,14 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   display: flex;
   gap: 16px;
   justify-content: center;
+}
+
+.pi {
+  margin-left: 6px;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: var(-transition);
 }
 </style>
