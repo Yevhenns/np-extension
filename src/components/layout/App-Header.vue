@@ -48,7 +48,7 @@ import { RouterLink } from 'vue-router';
   width: 50%;
   display: inline-block;
   text-decoration: none;
-  padding: 0 8px;
+  padding: 8px;
   color: inherit;
   transition: var(--transition);
 }
