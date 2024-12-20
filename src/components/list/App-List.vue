@@ -6,16 +6,16 @@ import AppButton from '../shared/App-Button.vue';
 import { FetchInfoProps, getInfo } from '../../api/getInfo';
 import { toast } from 'vue3-toastify';
 
-const info = ref<TrackingDocument | null>(null);
-const isLoading = ref(false);
-const isFormShown = ref(false);
-
 interface NewItem {
   number: string;
   status: string;
 }
-
+const info = ref<TrackingDocument | null>(null);
 const parcelsArray = ref<NewItem[]>([]);
+const isLoading = ref(false);
+const isFormShown = ref(false);
+
+onMounted(() => getParcelsFromLS());
 
 const getParcelsFromLS = () => {
   const storedParcels = localStorage.getItem('parcels');
@@ -23,10 +23,16 @@ const getParcelsFromLS = () => {
   parcelsArray.value = parcels as NewItem[];
 };
 
-onMounted(() => getParcelsFromLS());
-
 const showForm = () => {
   isFormShown.value = !isFormShown.value;
+};
+
+const deleteItemFromLS = (number: string) => {
+  const filteredArray = parcelsArray.value.filter(
+    item => item.number !== number
+  );
+  parcelsArray.value = filteredArray;
+  localStorage.setItem('parcels', JSON.stringify(parcelsArray.value));
 };
 
 const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
@@ -69,6 +75,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   <div class="list-wrapper">
     <AppListItem
       v-for="parcel in parcelsArray"
+      :deleteItemFromLS="deleteItemFromLS"
       :key="parcel.number"
       :number="parcel.number"
       :status="parcel.status"
@@ -83,7 +90,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
         style="font-size: 16px"
       ></i>
     </AppButton>
-    <AppButton icon="pi-sync">
+    <AppButton>
       Оновити
       <i
         class="pi pi-sync"

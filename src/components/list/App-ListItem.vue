@@ -4,6 +4,7 @@ import AppDeleteButton from '../shared/App-DeleteButton.vue';
 defineProps<{
   number: string;
   status: string;
+  deleteItemFromLS: (number: string) => void;
 }>();
 </script>
 
@@ -11,7 +12,7 @@ defineProps<{
   <div class="wrapper">
     <p>{{ number }}</p>
     <p>{{ status }}</p>
-    <AppDeleteButton />
+    <AppDeleteButton @click="deleteItemFromLS(number)" />
   </div>
 </template>
 
