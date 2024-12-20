@@ -14,6 +14,10 @@ const props = defineProps<{
   isFormShown: boolean;
 }>();
 
+const isEmptyList = () => {
+  return props.parcelsArray.length === 0 ? true : false;
+};
+
 const parcelsNumbersArray = computed(() =>
   props.parcelsArray.map(({ number }) => number)
 );
@@ -52,8 +56,8 @@ const refreshParelsStatus = async () => {
 </script>
 
 <template>
-  <div>Список посилок</div>
-  <p>Сторінка в розробці</p>
+  <p v-if="!isEmptyList()">Список посилок</p>
+  <p v-if="isEmptyList()">Список порожній</p>
   <div class="list-wrapper">
     <AppListItem
       v-for="parcel in parcelsArray"

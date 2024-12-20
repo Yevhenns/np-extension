@@ -28,7 +28,7 @@ import { RouterLink } from 'vue-router';
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   border-bottom: var(--secondary-border);
 }
 
@@ -40,15 +40,13 @@ import { RouterLink } from 'vue-router';
 
 .header-nav {
   display: flex;
-  gap: 20px;
   align-items: center;
   justify-content: center;
 }
 
 .nav-link {
-  border: var(--main-border);
+  width: 50%;
   display: inline-block;
-  border-radius: 4px;
   text-decoration: none;
   padding: 0 8px;
   color: inherit;
@@ -62,6 +60,5 @@ import { RouterLink } from 'vue-router';
 .nav-link.active {
   color: var(--main-bg);
   background-color: var(--main-color);
-  transform: scale(1.1);
 }
 </style>
