@@ -2,20 +2,45 @@
 import AppListItem from './App-ListItem.vue';
 import AppButton from '../shared/App-Button.vue';
 import { NewItem } from '../../pages/Home-Page.vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { refreshStatus } from '../../api/refreshStatus';
+import { toast } from 'vue3-toastify';
 
-defineProps<{
+const props = defineProps<{
   parcelsArray: NewItem[];
   deleteItemFromLS: (number: string) => void;
   showForm: () => void;
   isFormShown: boolean;
 }>();
 
+const parcelsNumbersArray = computed(() =>
+  props.parcelsArray.map(({ number }) => number)
+);
+
 const isLoading = ref(false);
+
+const refreshParelsStatus = async () => {
+  try {
+    isLoading.value = true;
+    const data = await refreshStatus({
+      documentNumbers: parcelsNumbersArray.value,
+    });
+    if (data) {
+      console.log(data);
+      isLoading.value = false;
+    }
+  } catch (e) {
+    toast.error(e, {
+      autoClose: 2000,
+    });
+    isLoading.value = false;
+  }
+};
 </script>
 
 <template>
   <div>Список посилок</div>
+  <p>{{ parcelsNumbersArray }}</p>
   <p>Сторінка в розробці</p>
   <div class="list-wrapper">
     <AppListItem
@@ -35,7 +60,7 @@ const isLoading = ref(false);
         style="font-size: 16px"
       ></i>
     </AppButton>
-    <AppButton>
+    <AppButton @click="refreshParelsStatus">
       Оновити
       <i
         class="pi pi-sync icon"
