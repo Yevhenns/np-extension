@@ -5,4 +5,7 @@
   --disabled-bg: #c8c8c8;
   --disabled-color: #969696;
   --main-border: 2px solid var(--main-color);
+  --secondary-border: 1px solid var(--disabled-color);
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --transition: all 250ms linear;
 }

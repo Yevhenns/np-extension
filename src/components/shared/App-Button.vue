@@ -26,11 +26,17 @@ defineProps<{
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: var(--transition);
+}
+
+.button:hover {
+  box-shadow: var(--box-shadow);
 }
 
 .button:disabled {
   background-color: var(--disabled-bg);
   color: var(--disabled-color);
   cursor: not-allowed;
+  box-shadow: none;
 }
 </style>

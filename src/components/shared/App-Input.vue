@@ -63,6 +63,11 @@ defineExpose({ unmaskedValue });
   padding-left: 8px;
   padding-right: 30px;
   width: 100%;
+  transition: var(--transition);
+}
+
+.input:hover {
+  box-shadow: var(--box-shadow);
 }
 
 .button-close {

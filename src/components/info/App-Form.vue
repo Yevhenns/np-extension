@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { FetchInfoProps } from '../api/getInfo';
-import AppInput from './shared/App-Input.vue';
-import AppButton from './shared/App-Button.vue';
+import { FetchInfoProps } from '../../api/getInfo';
+import AppInput from '../shared/App-Input.vue';
+import AppButton from '../shared/App-Button.vue';
 
 defineProps<{
   setInfoData: ({
