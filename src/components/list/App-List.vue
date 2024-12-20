@@ -85,15 +85,15 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
     <AppButton @click="showForm">
       Додати
       <i
-        class="pi pi-angle-down"
-        :class="isFormShown ? 'rotate' : ''"
+        class="pi pi-angle-down icon"
+        :class="isFormShown && 'rotate'"
         style="font-size: 16px"
       ></i>
     </AppButton>
     <AppButton>
       Оновити
       <i
-        class="pi pi-sync"
+        class="pi pi-sync icon"
         :class="isFormShown ? 'pi-spin' : ''"
         style="font-size: 16px"
       ></i>
@@ -122,12 +122,14 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   justify-content: center;
 }
 
-.pi {
+.icon {
   margin-left: 6px;
+  transform: rotate(0);
+  transition: var(--transition);
 }
 
 .rotate {
   transform: rotate(180deg);
-  transition: var(-transition);
+  transition: var(--transition);
 }
 </style>
