@@ -2,6 +2,7 @@
 import AppHeader from './components/layout/App-Header.vue';
 
 import 'vue3-toastify/dist/index.css';
+import 'primeicons/primeicons.css';
 </script>
 
 <template>
