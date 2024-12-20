@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { vMaska } from 'maska/vue';
+import AppDeleteButton from './App-DeleteButton.vue';
 
 defineProps<{
   placeholder: string;
@@ -39,7 +40,7 @@ defineExpose({ unmaskedValue });
         v-maska:unmaskedValue.unmasked="mask"
         v-model="maskedValue"
       />
-      <button class="button-close" type="button" @click="clearValue">X</button>
+      <AppDeleteButton @click="clearValue" />
     </div>
     <div class="error">
       <span>{{ errorMessage }}</span>
@@ -68,18 +69,6 @@ defineExpose({ unmaskedValue });
 
 .input:hover {
   box-shadow: var(--box-shadow);
-}
-
-.button-close {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
 }
 
 .error {

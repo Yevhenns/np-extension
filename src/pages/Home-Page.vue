@@ -1,7 +1,10 @@
+<script setup lang="ts">
+import AppList from '../components/list/App-List.vue';
+</script>
+
 <template>
   <div class="page">
-    <p>Список посилок</p>
-    <p>Сторінка в розробці</p>
+    <AppList />
   </div>
 </template>
 
