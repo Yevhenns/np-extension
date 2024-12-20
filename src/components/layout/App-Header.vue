@@ -12,10 +12,10 @@ import { RouterLink } from 'vue-router';
     </div>
     <div class="header-nav">
       <RouterLink class="nav-link" active-class="active" to="/"
-        >Посилки</RouterLink
+        >Список посилок</RouterLink
       >
       <RouterLink class="nav-link" active-class="active" to="/info"
-        >Трекер</RouterLink
+        >Про посилку</RouterLink
       >
     </div>
   </header>
