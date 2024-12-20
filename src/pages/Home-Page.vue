@@ -49,7 +49,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       getParcelsFromLS();
       if (parcelsArray.value.some(item => item.number === newObject.number)) {
         isLoading.value = false;
-        toast.error('Посилка вже у списку', {
+        toast.warn('Посилка вже у списку', {
           autoClose: 2000,
         });
         return;

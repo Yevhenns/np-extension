@@ -26,7 +26,7 @@ const isLoading = ref(false);
 
 const refreshParelsStatus = async () => {
   if (parcelsNumbersArray.value.length === 0) {
-    toast.error('Немає що оновлювати', {
+    toast.warn('Немає що оновлювати', {
       autoClose: 2000,
     });
     return;
@@ -43,7 +43,9 @@ const refreshParelsStatus = async () => {
       }));
       localStorage.setItem('parcels', JSON.stringify(newArray));
       props.getParcelsFromLS();
-      console.log(newArray);
+      toast.success('Статуси успішно оновлено', {
+        autoClose: 2000,
+      });
       isLoading.value = false;
     }
   } catch (e) {
