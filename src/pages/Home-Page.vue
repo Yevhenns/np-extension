@@ -9,6 +9,7 @@ export interface NewItem {
   number: string;
   status: string;
 }
+
 const info = ref<TrackingDocument | null>(null);
 const parcelsArray = ref<NewItem[]>([]);
 const isLoading = ref(false);
@@ -70,6 +71,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
 <template>
   <div class="page">
     <AppList
+      :getParcelsFromLS="getParcelsFromLS"
       :parcelsArray="parcelsArray"
       :deleteItemFromLS="deleteItemFromLS"
       :showForm="showForm"

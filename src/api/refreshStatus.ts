@@ -24,7 +24,7 @@ export const refreshStatus = async ({
       requestBody
     );
     if (response.data.success) {
-      return response.data.data[0] as TrackingDocument;
+      return response.data.data as TrackingDocument[];
     } else {
       throw new Error(response.data.errors);
     }

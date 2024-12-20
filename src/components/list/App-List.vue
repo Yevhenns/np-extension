@@ -9,6 +9,7 @@ import { toast } from 'vue3-toastify';
 const props = defineProps<{
   parcelsArray: NewItem[];
   deleteItemFromLS: (number: string) => void;
+  getParcelsFromLS: () => void;
   showForm: () => void;
   isFormShown: boolean;
 }>();
@@ -32,7 +33,13 @@ const refreshParelsStatus = async () => {
       documentNumbers: parcelsNumbersArray.value,
     });
     if (data) {
-      console.log(data);
+      const newArray = data.map(({ Number, Status }) => ({
+        number: Number,
+        status: Status,
+      }));
+      localStorage.setItem('parcels', JSON.stringify(newArray));
+      props.getParcelsFromLS();
+      console.log(newArray);
       isLoading.value = false;
     }
   } catch (e) {
