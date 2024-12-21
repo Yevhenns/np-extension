@@ -32,3 +32,5 @@ defineProps<{ info: TrackingDocument }>();
     </ul>
   </div>
 </template>
+
+<style scoped></style>

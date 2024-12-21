@@ -23,7 +23,7 @@ defineProps<{
       Оновити
       <i
         class="pi pi-sync icon"
-        :class="isLoading ? 'pi-spin' : ''"
+        :class="isLoading && 'pi-spin'"
         style="font-size: 16px"
       ></i>
     </AppButton>

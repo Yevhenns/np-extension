@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { toast } from 'vue3-toastify';
-import AppList from '../components/list/App-List.vue';
 import { onMounted, ref } from 'vue';
-import { FetchInfoProps, getInfo } from '../api/getInfo';
+import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
+import { FetchInfoProps, getInfo } from '../api/getInfo';
+import { toast } from 'vue3-toastify';
 
 export interface NewItem {
   number: string;

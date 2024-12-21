@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import AppListItem from './App-ListItem.vue';
-import { NewItem } from '../../pages/Home-Page.vue';
 import { computed, ref } from 'vue';
+import AppListItem from './App-ListItem.vue';
+import AppButtonsSet from './App-ButtonsSet.vue';
+import { NewItem } from '../../pages/Home-Page.vue';
 import { refreshStatus } from '../../api/refreshStatus';
 import { toast } from 'vue3-toastify';
-import AppButtonsSet from './App-ButtonsSet.vue';
 
 const props = defineProps<{
   parcelsArray: NewItem[];
