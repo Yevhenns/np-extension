@@ -8,8 +8,10 @@ export default [
   { files: ['**/*.{js,mjs,cjs,ts,vue}'] },
   {
     languageOptions: {
-      globals: globals.browser,
-      TrackingDocument: 'readonly',
+      globals: {
+        ...globals.browser,
+        TrackingDocument: 'readonly',
+      },
     },
   },
   pluginJs.configs.recommended,
