@@ -28,8 +28,7 @@ export const refreshStatus = async ({
     } else {
       throw new Error(response.data.errors);
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (e: any) {
-    throw new Error(e.message as string);
+  } catch (e) {
+    throw new Error((e as Error).message);
   }
 };
