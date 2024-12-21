@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import AppContainer from '../components/layout/App-Container.vue';
 import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
@@ -69,34 +70,29 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
 </script>
 
 <template>
-  <div class="page">
-    <AppList
-      :getParcelsFromLS="getParcelsFromLS"
-      :parcelsArray="parcelsArray"
-      :deleteItemFromLS="deleteItemFromLS"
-      :showForm="showForm"
-      :isFormShown="isFormShown"
-    />
-    <div :class="isFormShown ? 'wrapper-shown' : 'wrapper-hidden'">
-      <AppForm
-        :class="isFormShown ? 'form-shown' : 'form-hidden'"
-        :showPhone="false"
-        :setInfoData="setInfoData"
-        :isLoading="isLoading"
+  <div>
+    <AppContainer>
+      <AppList
+        :getParcelsFromLS="getParcelsFromLS"
+        :parcelsArray="parcelsArray"
+        :deleteItemFromLS="deleteItemFromLS"
+        :showForm="showForm"
+        :isFormShown="isFormShown"
       />
-    </div>
+      <div :class="isFormShown ? 'wrapper-shown' : 'wrapper-hidden'">
+        <AppForm
+          :class="isFormShown ? 'form-shown' : 'form-hidden'"
+          :showPhone="false"
+          :setInfoData="setInfoData"
+          :isLoading="isLoading"
+        />
+      </div>
+    </AppContainer>
   </div>
 </template>
 
 <style scoped>
 @import '../variables.css';
-
-.page {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 .wrapper-shown {
   overflow: visible;

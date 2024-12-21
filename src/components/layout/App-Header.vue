@@ -1,23 +1,26 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import AppContainer from './App-Container.vue';
 </script>
 
 <template>
   <header class="header">
-    <div class="header-heading">
-      <RouterLink to="/">
-        <img src="/logo.png" alt="logo" width="32" height="32" />
-      </RouterLink>
-      <h3>Трекінг посилок НП</h3>
-    </div>
-    <div class="header-nav">
-      <RouterLink class="nav-link" active-class="active" to="/"
-        >Список посилок</RouterLink
-      >
-      <RouterLink class="nav-link" active-class="active" to="/info"
-        >Про посилку</RouterLink
-      >
-    </div>
+    <AppContainer :style="{ paddingBottom: '0' }">
+      <div class="header-heading">
+        <RouterLink to="/">
+          <img src="/logo.png" alt="logo" width="32" height="32" />
+        </RouterLink>
+        <h3>Трекінг посилок НП</h3>
+      </div>
+      <div class="header-nav">
+        <RouterLink class="nav-link" active-class="active" to="/"
+          >Список посилок</RouterLink
+        >
+        <RouterLink class="nav-link" active-class="active" to="/info"
+          >Про посилку</RouterLink
+        >
+      </div>
+    </AppContainer>
   </header>
 </template>
 
@@ -25,10 +28,6 @@ import { RouterLink } from 'vue-router';
 @import '../../variables.css';
 
 .header {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 20px 20px 0 20px;
   border-bottom: var(--secondary-border);
 }
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
+import AppContainer from '../components/layout/App-Container.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import AppInfo from '../components/info/App-Info.vue';
 import { toast } from 'vue3-toastify';
@@ -31,17 +32,15 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
 
 <template>
   <div class="page">
-    <AppForm showPhone :setInfoData="setInfoData" :isLoading="isLoading" />
-    <AppInfo :info="info" v-if="info" />
+    <AppContainer>
+      <AppForm showPhone :setInfoData="setInfoData" :isLoading="isLoading" />
+      <AppInfo :info="info" v-if="info" />
+    </AppContainer>
   </div>
 </template>
 
 <style scoped>
 .page {
-  padding: 20px;
   text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 </style>
