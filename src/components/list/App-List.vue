@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import AppListItem from './App-ListItem.vue';
-import AppButton from '../shared/App-Button.vue';
 import { NewItem } from '../../pages/Home-Page.vue';
 import { computed, ref } from 'vue';
 import { refreshStatus } from '../../api/refreshStatus';
 import { toast } from 'vue3-toastify';
+import AppButtonsSet from './App-ButtonsSet.vue';
 
 const props = defineProps<{
   parcelsArray: NewItem[];
@@ -69,49 +69,20 @@ const refreshParelsStatus = async () => {
       :status="parcel.status"
     />
   </div>
-  <div class="buttons-set">
-    <AppButton @click="showForm">
-      Додати
-      <i
-        class="pi pi-angle-down icon"
-        :class="isFormShown && 'rotate'"
-        style="font-size: 16px"
-      ></i>
-    </AppButton>
-    <AppButton @click="refreshParelsStatus">
-      Оновити
-      <i
-        class="pi pi-sync icon"
-        :class="isLoading ? 'pi-spin' : ''"
-        style="font-size: 16px"
-      ></i>
-    </AppButton>
-  </div>
+  <AppButtonsSet
+    :showForm="showForm"
+    :isFormShown="isFormShown"
+    :isLoading="isLoading"
+    :refreshParelsStatus="refreshParelsStatus"
+  />
 </template>
 
-<style>
+<style scoped>
 @import '../../variables.css';
 
 .list-wrapper {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-.buttons-set {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-}
-
-.icon {
-  margin-left: 6px;
-  transform: rotate(0);
-  transition: var(--transition);
-}
-
-.rotate {
-  transform: rotate(180deg);
-  transition: var(--transition);
 }
 </style>
