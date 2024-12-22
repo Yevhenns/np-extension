@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import AppContainer from '../components/layout/App-Container.vue';
 import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
 import {
+  getIsLimit,
   setParcelRefToLS,
   updateParcelsRef,
 } from '../helpers/parcelsStorageActions';
@@ -15,10 +16,20 @@ const parcelsArray = ref<ParcelShortInfo[]>([]);
 const isLoading = ref(false);
 const isFormShown = ref(false);
 const documentNumber = ref('');
+const isLimit = ref(false);
+
+const setIsLimit = () => (isLimit.value = getIsLimit());
 
 const updateParcels = () => updateParcelsRef(parcelsArray);
 
-onMounted(() => updateParcels());
+onMounted(() => {
+  updateParcels();
+  setIsLimit();
+});
+
+watch(parcelsArray, () => {
+  setIsLimit();
+});
 
 const showForm = () => {
   isFormShown.value = !isFormShown.value;
@@ -47,7 +58,18 @@ const isNumberInList = () => {
   return false;
 };
 
+const isLimitReached = () => {
+  if (isLimit.value) {
+    toast.warn('Ви досягли ліміту в списку посилок', {
+      autoClose: 2000,
+    });
+    return true;
+  }
+  return false;
+};
+
 const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
+  if (isLimitReached()) return;
   if (isNumberInList()) return;
 
   try {
@@ -63,6 +85,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       updateParcelsRef(parcelsArray);
       parcelsArray.value.push(newObject);
       setParcelRefToLS(parcelsArray);
+      setIsLimit();
     }
     isLoading.value = false;
   } catch (e) {
@@ -79,6 +102,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   <div>
     <AppContainer>
       <AppList
+        :isLimit="isLimit"
         :updateParcels="updateParcels"
         :parcelsArray="parcelsArray"
         :deleteItemFromLS="deleteItemFromLS"

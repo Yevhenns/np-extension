@@ -3,7 +3,9 @@ import AppParcelInfo from './App-ParcelInfo.vue';
 import AppRecipientInfo from './App-RecipientInfo.vue';
 import AppSenderInfo from './App-SenderInfo.vue';
 
-defineProps<{ info: TrackingDocument }>();
+defineProps<{
+  info: TrackingDocument;
+}>();
 </script>
 
 <template>

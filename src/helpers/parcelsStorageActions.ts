@@ -12,3 +12,11 @@ export const updateParcelsRef = (parcelsRef: Ref<ParcelShortInfo[]>) => {
 export const setParcelRefToLS = (parcelsArray: Ref<ParcelShortInfo[]>) => {
   localStorage.setItem('parcels', JSON.stringify(parcelsArray.value));
 };
+
+export const getIsLimit = () => {
+  const storedParcels = localStorage.getItem('parcels');
+  const storedParcelsLength = storedParcels
+    ? (JSON.parse(storedParcels) as ParcelShortInfo[]).length
+    : 0;
+  return storedParcelsLength >= 5 ? true : false;
+};

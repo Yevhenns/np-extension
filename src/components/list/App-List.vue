@@ -11,6 +11,7 @@ const props = defineProps<{
   deleteItemFromLS: (number: string) => void;
   showForm: () => void;
   isFormShown: boolean;
+  isLimit: boolean;
 }>();
 
 const isEmptyList = () => {
@@ -59,6 +60,10 @@ const refreshParelsStatus = async () => {
 <template>
   <p v-if="!isEmptyList()">Список посилок</p>
   <p v-if="isEmptyList()">Список порожній</p>
+  <p v-if="props.isLimit" class="limit-text">Ліміт збереження досягнуто</p>
+  <p v-if="props.isLimit" class="limit-text">
+    Видаліть зайве, щоб мати можливість зберігати посилки
+  </p>
   <div class="list-wrapper">
     <AppListItem
       v-for="parcel in parcelsArray"
@@ -83,5 +88,9 @@ const refreshParelsStatus = async () => {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.limit-text {
+  color: var(--main-color);
 }
 </style>

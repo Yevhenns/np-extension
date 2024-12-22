@@ -4,8 +4,8 @@ import { FetchInfoProps, getInfo } from '../api/getInfo';
 import AppContainer from '../components/layout/App-Container.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import AppInfo from '../components/info/App-Info.vue';
-import { toast } from 'vue3-toastify';
 import {
+  getIsLimit,
   setParcelRefToLS,
   updateParcelsRef,
 } from '../helpers/parcelsStorageActions';
@@ -13,18 +13,23 @@ import {
   setCurrentNumberLS,
   updateCurrentNumberRef,
 } from '../helpers/currentNumberStorageActions';
+import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);
 const parcelsArray = ref<ParcelShortInfo[]>([]);
 const isLoading = ref(false);
 const documentNumber = ref('');
 const documentNumberFromLS = ref('');
+const isLimit = ref(false);
+
+const setIsLimit = () => (isLimit.value = getIsLimit());
 
 const updateParcels = () => updateParcelsRef(parcelsArray);
 
 onMounted(() => {
   updateParcels();
   updateCurrentNumberRef(documentNumberFromLS);
+  setIsLimit();
 });
 
 const handleDocumentNumber = (value: string) => {
@@ -33,6 +38,12 @@ const handleDocumentNumber = (value: string) => {
 
 const checkIsNumberInListOrSetToLS = (data: TrackingDocument) => {
   if (parcelsArray.value.some(item => item.number === documentNumber.value)) {
+    return;
+  }
+  if (isLimit.value) {
+    toast.warn('Ви досягли ліміту в списку посилок', {
+      autoClose: 2000,
+    });
     return;
   } else {
     const newObject: ParcelShortInfo = {
@@ -56,6 +67,7 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
       info.value = data;
       checkIsNumberInListOrSetToLS(data);
       setCurrentNumberLS(documentNumber);
+      setIsLimit();
     }
     isLoading.value = false;
   } catch (e) {
