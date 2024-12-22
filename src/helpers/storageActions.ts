@@ -9,4 +9,6 @@ export const updateParcelsRef = (parcelsRef: Ref<ParcelShortInfo[]>) => {
   parcelsRef.value = getParcelsFromLS();
 };
 
-export const setParcelToLS = () => {};
+export const setParcelToLS = (parcelsArray: Ref<ParcelShortInfo[]>) => {
+  localStorage.setItem('parcels', JSON.stringify(parcelsArray.value));
+};

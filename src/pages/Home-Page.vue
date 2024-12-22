@@ -4,7 +4,7 @@ import AppContainer from '../components/layout/App-Container.vue';
 import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
-import { updateParcelsRef } from '../helpers/storageActions';
+import { setParcelToLS, updateParcelsRef } from '../helpers/storageActions';
 import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);
@@ -25,7 +25,7 @@ const deleteItemFromLS = (number: string) => {
     item => item.number !== number
   );
   parcelsArray.value = filteredArray;
-  localStorage.setItem('parcels', JSON.stringify(parcelsArray.value));
+  setParcelToLS(parcelsArray);
 };
 
 const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
@@ -48,7 +48,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
         return;
       }
       parcelsArray.value.push(newObject);
-      localStorage.setItem('parcels', JSON.stringify(parcelsArray.value));
+      setParcelToLS(parcelsArray);
     }
     isLoading.value = false;
   } catch (e) {
