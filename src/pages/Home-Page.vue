@@ -4,7 +4,7 @@ import AppContainer from '../components/layout/App-Container.vue';
 import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
-import { setParcelToLS, updateParcelsRef } from '../helpers/storageActions';
+import { setParcelRefToLS, updateParcelsRef } from '../helpers/storageActions';
 import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);
@@ -26,12 +26,11 @@ const deleteItemFromLS = (number: string) => {
     item => item.number !== number
   );
   parcelsArray.value = filteredArray;
-  setParcelToLS(parcelsArray);
+  setParcelRefToLS(parcelsArray);
 };
 
 const handleDocumentNumber = (value: string) => {
   documentNumber.value = value;
-  console.log('Received Document Number:', value);
 };
 
 const isNumberInList = () => {
@@ -60,7 +59,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       };
       updateParcelsRef(parcelsArray);
       parcelsArray.value.push(newObject);
-      setParcelToLS(parcelsArray);
+      setParcelRefToLS(parcelsArray);
     }
     isLoading.value = false;
   } catch (e) {
