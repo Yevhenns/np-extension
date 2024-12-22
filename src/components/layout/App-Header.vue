@@ -46,9 +46,7 @@ import AppContainer from './App-Container.vue';
 .nav-link {
   width: 50%;
   display: inline-block;
-  text-decoration: none;
   padding: 8px;
-  color: inherit;
   transition: var(--transition);
 }
 
