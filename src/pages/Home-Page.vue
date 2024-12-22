@@ -4,7 +4,10 @@ import AppContainer from '../components/layout/App-Container.vue';
 import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
-import { setParcelRefToLS, updateParcelsRef } from '../helpers/storageActions';
+import {
+  setParcelRefToLS,
+  updateParcelsRef,
+} from '../helpers/parcelsStorageActions';
 import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);

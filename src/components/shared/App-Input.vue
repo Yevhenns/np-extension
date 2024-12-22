@@ -1,14 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { vMaska } from 'maska/vue';
 import AppDeleteButton from './App-DeleteButton.vue';
+import { resetCurrentNumberLS } from '../../helpers/currentNumberStorageActions';
 
-defineProps<{
+const props = defineProps<{
   placeholder: string;
   id: string;
   mask: string;
   errorMessage?: string;
+  documentNumberFromLS?: string;
 }>();
+
+watch(
+  () => props.documentNumberFromLS,
+  newValue => {
+    if (newValue && newValue.length > 0) {
+      unmaskedValue.value = newValue;
+      maskedValue.value = newValue;
+    }
+  }
+);
 
 const emit = defineEmits(['inputValue']);
 
@@ -19,6 +31,9 @@ const clearValue = () => {
   unmaskedValue.value = '';
   maskedValue.value = '';
   emit('inputValue', unmaskedValue.value);
+  if (props.documentNumberFromLS && props.documentNumberFromLS.length > 0) {
+    resetCurrentNumberLS();
+  }
 };
 
 const onInputChange = () => {

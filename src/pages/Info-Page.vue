@@ -5,16 +5,27 @@ import AppContainer from '../components/layout/App-Container.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import AppInfo from '../components/info/App-Info.vue';
 import { toast } from 'vue3-toastify';
-import { setParcelRefToLS, updateParcelsRef } from '../helpers/storageActions';
+import {
+  setParcelRefToLS,
+  updateParcelsRef,
+} from '../helpers/parcelsStorageActions';
+import {
+  setCurrentNumberLS,
+  updateCurrentNumberRef,
+} from '../helpers/currentNumberStorageActions';
 
 const info = ref<TrackingDocument | null>(null);
 const parcelsArray = ref<ParcelShortInfo[]>([]);
 const isLoading = ref(false);
 const documentNumber = ref('');
+const documentNumberFromLS = ref('');
 
 const updateParcels = () => updateParcelsRef(parcelsArray);
 
-onMounted(() => updateParcels());
+onMounted(() => {
+  updateParcels();
+  updateCurrentNumberRef(documentNumberFromLS);
+});
 
 const handleDocumentNumber = (value: string) => {
   documentNumber.value = value;
@@ -40,9 +51,11 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
       documentNumber,
       phoneNumber,
     });
+
     if (data) {
       info.value = data;
       checkIsNumberInListOrSetToLS(data);
+      setCurrentNumberLS(documentNumber);
     }
     isLoading.value = false;
   } catch (e) {
@@ -60,6 +73,7 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
     <AppContainer>
       <AppForm
         showPhone
+        :documentNumberFromLS="documentNumberFromLS"
         @documentNumber="handleDocumentNumber"
         :setInfoData="setInfoData"
         :isLoading="isLoading"

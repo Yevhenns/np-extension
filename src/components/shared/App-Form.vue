@@ -11,6 +11,7 @@ defineProps<{
   }: FetchInfoProps) => Promise<void>;
   isLoading: boolean;
   showPhone: boolean;
+  documentNumberFromLS?: string;
 }>();
 
 const emit = defineEmits(['documentNumber']);
@@ -41,6 +42,7 @@ watch(documentNumber, setIsValid);
 <template>
   <form class="form">
     <AppInput
+      :documentNumberFromLS="documentNumberFromLS"
       @inputValue="setDocumentNumber"
       placeholder="20 9999 9999 9999"
       id="documentNumber"
