@@ -11,6 +11,7 @@ const info = ref<TrackingDocument | null>(null);
 const parcelsArray = ref<ParcelShortInfo[]>([]);
 const isLoading = ref(false);
 const isFormShown = ref(false);
+const documentNumber = ref('');
 
 const updateParcels = () => updateParcelsRef(parcelsArray);
 
@@ -28,7 +29,25 @@ const deleteItemFromLS = (number: string) => {
   setParcelToLS(parcelsArray);
 };
 
+const handleDocumentNumber = (value: string) => {
+  documentNumber.value = value;
+  console.log('Received Document Number:', value);
+};
+
+const isNumberInList = () => {
+  if (parcelsArray.value.some(item => item.number === documentNumber.value)) {
+    isLoading.value = false;
+    toast.warn('Посилка вже у списку', {
+      autoClose: 2000,
+    });
+    return true;
+  }
+  return false;
+};
+
 const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
+  if (isNumberInList()) return;
+
   try {
     isLoading.value = true;
     const data = await getInfo({
@@ -40,13 +59,6 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
         status: data.Status,
       };
       updateParcelsRef(parcelsArray);
-      if (parcelsArray.value.some(item => item.number === newObject.number)) {
-        isLoading.value = false;
-        toast.warn('Посилка вже у списку', {
-          autoClose: 2000,
-        });
-        return;
-      }
       parcelsArray.value.push(newObject);
       setParcelToLS(parcelsArray);
     }
@@ -73,6 +85,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       />
       <div :class="isFormShown ? 'wrapper-shown' : 'wrapper-hidden'">
         <AppForm
+          @documentNumber="handleDocumentNumber"
           :class="isFormShown ? 'form-shown' : 'form-hidden'"
           :showPhone="false"
           :setInfoData="setInfoData"

@@ -13,6 +13,8 @@ defineProps<{
   showPhone: boolean;
 }>();
 
+const emit = defineEmits(['documentNumber']);
+
 const documentNumber = ref('');
 const phoneNumber = ref('');
 const isValid = ref(false);
@@ -22,6 +24,7 @@ const phoneNumberLength = 12;
 
 const setDocumentNumber = (value: string) => {
   documentNumber.value = value;
+  emit('documentNumber', value);
 };
 
 const setPhoneNumber = (value: string) => {
