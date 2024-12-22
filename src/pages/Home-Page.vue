@@ -4,25 +4,17 @@ import AppContainer from '../components/layout/App-Container.vue';
 import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
+import { updateParcelsRef } from '../helpers/storageActions';
 import { toast } from 'vue3-toastify';
 
-export interface NewItem {
-  number: string;
-  status: string;
-}
-
 const info = ref<TrackingDocument | null>(null);
-const parcelsArray = ref<NewItem[]>([]);
+const parcelsArray = ref<ParcelShortInfo[]>([]);
 const isLoading = ref(false);
 const isFormShown = ref(false);
 
-onMounted(() => getParcelsFromLS());
+const updateParcels = () => updateParcelsRef(parcelsArray);
 
-const getParcelsFromLS = () => {
-  const storedParcels = localStorage.getItem('parcels');
-  const parcels = storedParcels ? JSON.parse(storedParcels) : [];
-  parcelsArray.value = parcels as NewItem[];
-};
+onMounted(() => updateParcels());
 
 const showForm = () => {
   isFormShown.value = !isFormShown.value;
@@ -43,11 +35,11 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       documentNumber,
     });
     if (data) {
-      const newObject: NewItem = {
+      const newObject: ParcelShortInfo = {
         number: data.Number,
         status: data.Status,
       };
-      getParcelsFromLS();
+      updateParcelsRef(parcelsArray);
       if (parcelsArray.value.some(item => item.number === newObject.number)) {
         isLoading.value = false;
         toast.warn('Посилка вже у списку', {
@@ -73,7 +65,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   <div>
     <AppContainer>
       <AppList
-        :getParcelsFromLS="getParcelsFromLS"
+        :updateParcels="updateParcels"
         :parcelsArray="parcelsArray"
         :deleteItemFromLS="deleteItemFromLS"
         :showForm="showForm"

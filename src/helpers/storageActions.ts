@@ -1,3 +1,12 @@
-export const getParcelsFromLS = () => {};
+import { Ref } from 'vue';
+
+export const getParcelsFromLS = () => {
+  const storedParcels = localStorage.getItem('parcels');
+  return storedParcels ? (JSON.parse(storedParcels) as ParcelShortInfo[]) : [];
+};
+
+export const updateParcelsRef = (parcelsRef: Ref<ParcelShortInfo[]>) => {
+  parcelsRef.value = getParcelsFromLS();
+};
 
 export const setParcelToLS = () => {};

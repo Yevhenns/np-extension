@@ -11,6 +11,7 @@ export default [
       globals: {
         ...globals.browser,
         TrackingDocument: 'readonly',
+        ParcelShortInfo: 'readonly',
       },
     },
   },

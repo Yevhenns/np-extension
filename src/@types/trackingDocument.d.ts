@@ -17,3 +17,8 @@ interface TrackingDocument {
   SenderFullNameEW: string;
   PhoneSender: string;
 }
+
+interface ParcelShortInfo {
+  number: string;
+  status: string;
+}

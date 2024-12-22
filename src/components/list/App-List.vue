@@ -2,14 +2,13 @@
 import { computed, ref } from 'vue';
 import AppListItem from './App-ListItem.vue';
 import AppButtonsSet from './App-ButtonsSet.vue';
-import { NewItem } from '../../pages/Home-Page.vue';
 import { refreshStatus } from '../../api/refreshStatus';
 import { toast } from 'vue3-toastify';
 
 const props = defineProps<{
-  parcelsArray: NewItem[];
+  updateParcels: () => void;
+  parcelsArray: ParcelShortInfo[];
   deleteItemFromLS: (number: string) => void;
-  getParcelsFromLS: () => void;
   showForm: () => void;
   isFormShown: boolean;
 }>();
@@ -42,7 +41,7 @@ const refreshParelsStatus = async () => {
         status: Status,
       }));
       localStorage.setItem('parcels', JSON.stringify(newArray));
-      props.getParcelsFromLS();
+      props.updateParcels();
       toast.success('Статуси успішно оновлено', {
         autoClose: 2000,
       });
