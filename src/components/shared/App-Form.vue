@@ -76,7 +76,6 @@ watch(documentNumber, setIsValid);
     </p>
     <AppButton
       :disabled="!isValid"
-      :isLoading="store.isLoading"
       @click="setDetailsData({ documentNumber, phoneNumber })"
       >Пошук</AppButton
     >

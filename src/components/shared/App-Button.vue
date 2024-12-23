@@ -1,15 +1,14 @@
 <script setup lang="ts">
+import { useParcelsStore } from '../../store/parcels';
 import AppSpinner from './App-Spinner.vue';
 
-defineProps<{
-  isLoading?: boolean;
-}>();
+const store = useParcelsStore();
 </script>
 
 <template>
   <button class="button" type="button">
-    <AppSpinner v-if="isLoading" />
-    <slot v-if="!isLoading"></slot>
+    <AppSpinner v-if="store.isLoading" />
+    <slot v-if="!store.isLoading"></slot>
   </button>
 </template>
 
