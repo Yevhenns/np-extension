@@ -38,6 +38,7 @@ const deleteAllParcels = () => {
 }
 
 .modal {
+  width: 200px;
   padding: 24px;
   background-color: var(--main-bg);
   border-radius: 4px;

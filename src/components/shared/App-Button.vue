@@ -26,7 +26,7 @@ defineProps<{
   padding: 0 8px;
   cursor: pointer;
   transition: var(--transition);
-  min-width: 80px;
+  width: 100%;
 }
 
 .button:hover {
