@@ -92,6 +92,7 @@ const setDetailsData = async ({ documentNumber }: FetchInfoProps) => {
       />
       <div :class="isFormShown ? 'wrapper-shown' : 'wrapper-hidden'">
         <AppForm
+          :saveNumber="false"
           :class="isFormShown ? 'form-shown' : 'form-hidden'"
           :showPhone="false"
           :setDetailsData="setDetailsData"

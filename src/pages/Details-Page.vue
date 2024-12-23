@@ -61,7 +61,7 @@ const setDetailsData = async ({
 <template>
   <div class="page">
     <AppContainer>
-      <AppForm :setDetailsData="setDetailsData" showPhone />
+      <AppForm :saveNumber="true" :setDetailsData="setDetailsData" showPhone />
       <AppDetails :details="store.details" v-if="store.details" />
     </AppContainer>
   </div>

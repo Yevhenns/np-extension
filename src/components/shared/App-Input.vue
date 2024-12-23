@@ -9,6 +9,7 @@ const props = defineProps<{
   mask: string;
   errorMessage?: string;
   currentdocumentNumber?: string;
+  saveNumber: boolean;
 }>();
 
 const emit = defineEmits(['inputValue']);
@@ -19,7 +20,7 @@ const maskedValue = ref('');
 watch(
   () => props.currentdocumentNumber,
   newValue => {
-    if (newValue && newValue.length > 0) {
+    if (props.saveNumber && newValue && newValue.length > 0) {
       unmaskedValue.value = newValue;
       maskedValue.value = newValue;
     }

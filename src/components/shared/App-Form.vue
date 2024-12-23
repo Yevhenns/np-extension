@@ -11,6 +11,7 @@ defineProps<{
     phoneNumber,
   }: FetchInfoProps) => Promise<void>;
   showPhone: boolean;
+  saveNumber: boolean;
 }>();
 
 const store = useParcelsStore();
@@ -42,6 +43,7 @@ watch(documentNumber, setIsValid);
 <template>
   <form class="form">
     <AppInput
+      :saveNumber="saveNumber"
       :currentdocumentNumber="store.currentParcelNumber"
       @inputValue="setDocumentNumber"
       placeholder="20 9999 9999 9999"
@@ -54,6 +56,8 @@ watch(documentNumber, setIsValid);
     >
     <AppInput
       v-if="showPhone"
+      :saveNumber="saveNumber"
+      :currentdocumentNumber="store.currentPhoneNumber"
       @inputValue="setPhoneNumber"
       placeholder="38 099 999 99 99"
       id="phoneNumber"
