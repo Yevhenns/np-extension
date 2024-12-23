@@ -6,10 +6,7 @@ import { refreshStatus } from '../../api/refreshStatus';
 import { toast } from 'vue3-toastify';
 import { useParcelsStore } from '../../store/parcels';
 
-const props = defineProps<{
-  updateParcels: () => void;
-  parcelsArray: ParcelShortInfo[];
-  deleteItemFromLS: (number: string) => void;
+defineProps<{
   showForm: () => void;
   isFormShown: boolean;
   checkIsEmptyListAndToggle: () => void;
@@ -17,15 +14,15 @@ const props = defineProps<{
 
 const store = useParcelsStore();
 
+const isLoading = ref(false);
+
 const isEmptyList = () => {
-  return props.parcelsArray.length === 0 ? true : false;
+  return store.parcelsArray.length === 0 ? true : false;
 };
 
 const parcelsNumbersArray = computed(() =>
-  props.parcelsArray.map(({ number }) => number)
+  store.parcelsArray.map(({ number }) => number)
 );
-
-const isLoading = ref(false);
 
 const refreshParelsStatus = async () => {
   if (parcelsNumbersArray.value.length === 0) {
@@ -44,8 +41,7 @@ const refreshParelsStatus = async () => {
         number: Number,
         status: Status,
       }));
-      localStorage.setItem('parcels', JSON.stringify(newArray));
-      props.updateParcels();
+      store.updateParcels(newArray);
       toast.success('Статуси успішно оновлено', {
         autoClose: 2000,
       });
@@ -69,8 +65,7 @@ const refreshParelsStatus = async () => {
   </p>
   <div class="list-wrapper">
     <AppListItem
-      v-for="parcel in parcelsArray"
-      :deleteItemFromLS="deleteItemFromLS"
+      v-for="parcel in store.parcelsArray"
       :key="parcel.number"
       :number="parcel.number"
       :status="parcel.status"

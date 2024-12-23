@@ -1,30 +1,30 @@
 <script setup lang="ts">
 import AppDetailsListItem from './App-DetailsListItem.vue';
 
-defineProps<{ info: TrackingDocument }>();
+defineProps<{ details: TrackingDocument }>();
 </script>
 
 <template>
   <div
     v-if="
-      info.CityRecipient ||
-      info.WarehouseRecipient ||
-      info.RecipientFullNameEW.trim() ||
-      info.PhoneRecipient
+      details.CityRecipient ||
+      details.WarehouseRecipient ||
+      details.RecipientFullNameEW.trim() ||
+      details.PhoneRecipient
     "
   >
     <h3>Інформація про одержувача</h3>
     <ul>
-      <AppDetailsListItem :infoString="info.CityRecipient"
+      <AppDetailsListItem :detailsString="details.CityRecipient"
         >Місто:
       </AppDetailsListItem>
-      <AppDetailsListItem :infoString="info.WarehouseRecipient"
+      <AppDetailsListItem :detailsString="details.WarehouseRecipient"
         >Адреса:
       </AppDetailsListItem>
-      <AppDetailsListItem :infoString="info.RecipientFullNameEW"
+      <AppDetailsListItem :detailsString="details.RecipientFullNameEW"
         >ПІБ:
       </AppDetailsListItem>
-      <AppDetailsListItem :infoString="info.PhoneRecipient"
+      <AppDetailsListItem :detailsString="details.PhoneRecipient"
         >Номер:
       </AppDetailsListItem>
     </ul>

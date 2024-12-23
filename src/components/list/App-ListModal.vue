@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import { useParcelsStore } from '../../store/parcels';
 import AppButton from '../shared/App-Button.vue';
-import { resetParcels } from '../../helpers/parcelsStorageActions';
 import { toast } from 'vue3-toastify';
 
 const props = defineProps<{
   toggleModal: () => void;
 }>();
 
+const store = useParcelsStore();
+
 const deleteAllParcels = () => {
-  resetParcels();
+  store.removeAllParcel();
   props.toggleModal();
   toast.success('Список успішно очищено', {
     autoClose: 2000,

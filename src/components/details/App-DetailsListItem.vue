@@ -1,11 +1,11 @@
 <script setup lang="ts">
-defineProps<{ infoString: string }>();
+defineProps<{ detailsString: string }>();
 </script>
 
 <template>
-  <li v-if="infoString">
+  <li v-if="detailsString">
     <p>
-      <span class="span"><slot></slot></span>{{ infoString }}
+      <span class="span"><slot></slot></span>{{ detailsString }}
     </p>
   </li>
 </template>

@@ -3,18 +3,17 @@ import { ref, watch } from 'vue';
 import { FetchInfoProps } from '../../api/getInfo';
 import AppInput from '../shared/App-Input.vue';
 import AppButton from '../shared/App-Button.vue';
+import { useParcelsStore } from '../../store/parcels';
 
 defineProps<{
-  setInfoData: ({
+  setDetailsData: ({
     documentNumber,
     phoneNumber,
   }: FetchInfoProps) => Promise<void>;
-  isLoading: boolean;
   showPhone: boolean;
-  documentNumberFromLS?: string;
 }>();
 
-const emit = defineEmits(['documentNumber']);
+const store = useParcelsStore();
 
 const documentNumber = ref('');
 const phoneNumber = ref('');
@@ -25,11 +24,12 @@ const phoneNumberLength = 12;
 
 const setDocumentNumber = (value: string) => {
   documentNumber.value = value;
-  emit('documentNumber', value);
+  store.setCurrentParcelNumber(value);
 };
 
 const setPhoneNumber = (value: string) => {
   phoneNumber.value = value;
+  store.setCurrentPhoneNumber(value);
 };
 
 const setIsValid = () => {
@@ -42,7 +42,7 @@ watch(documentNumber, setIsValid);
 <template>
   <form class="form">
     <AppInput
-      :documentNumberFromLS="documentNumberFromLS"
+      :currentdocumentNumber="store.currentParcelNumber"
       @inputValue="setDocumentNumber"
       placeholder="20 9999 9999 9999"
       id="documentNumber"
@@ -72,8 +72,8 @@ watch(documentNumber, setIsValid);
     </p>
     <AppButton
       :disabled="!isValid"
-      :isLoading="isLoading"
-      @click="setInfoData({ documentNumber, phoneNumber })"
+      :isLoading="store.isLoading"
+      @click="setDetailsData({ documentNumber, phoneNumber })"
       >Пошук</AppButton
     >
   </form>

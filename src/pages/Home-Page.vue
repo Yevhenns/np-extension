@@ -1,60 +1,27 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
+import { ref } from 'vue';
 import AppContainer from '../components/layout/App-Container.vue';
 import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
-import {
-  setParcelRefToLS,
-  updateParcelsRef,
-} from '../helpers/parcelsStorageActions';
 import AppListModal from '../components/list/App-ListModal.vue';
 import { useParcelsStore } from '../store/parcels.ts';
 import { toast } from 'vue3-toastify';
 
-const info = ref<TrackingDocument | null>(null);
-const parcelsArray = ref<ParcelShortInfo[]>([]);
-const isLoading = ref(false);
 const isFormShown = ref(false);
-const documentNumber = ref('');
 const isModalShown = ref(false);
 
 const store = useParcelsStore();
-
-const updateParcels = () => updateParcelsRef(parcelsArray);
-
-onMounted(() => {
-  updateParcels();
-  store.setIsLimit();
-});
-
-watch(parcelsArray, () => {
-  store.setIsLimit();
-});
-
-watch(isModalShown, () => {
-  updateParcels();
-});
 
 const showForm = () => {
   isFormShown.value = !isFormShown.value;
 };
 
-const deleteItemFromLS = (number: string) => {
-  const filteredArray = parcelsArray.value.filter(
-    item => item.number !== number
-  );
-  parcelsArray.value = filteredArray;
-  setParcelRefToLS(parcelsArray);
-};
-
-const handleDocumentNumber = (value: string) => {
-  documentNumber.value = value;
-};
-
 const isNumberInList = () => {
-  if (parcelsArray.value.some(item => item.number === documentNumber.value)) {
-    isLoading.value = false;
+  if (
+    store.parcelsArray.some(item => item.number === store.currentParcelNumber)
+  ) {
+    store.setIsLoading(false);
     toast.warn('Посилка вже у списку', {
       autoClose: 2000,
     });
@@ -78,7 +45,7 @@ const toggleModal = () => {
 };
 
 const checkIsEmptyListAndToggle = () => {
-  if (parcelsArray.value.length === 0) {
+  if (store.parcelsArray.length === 0) {
     toast.warn('Немає що видаляти', {
       autoClose: 2000,
     });
@@ -88,12 +55,12 @@ const checkIsEmptyListAndToggle = () => {
   }
 };
 
-const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
+const setDetailsData = async ({ documentNumber }: FetchInfoProps) => {
   if (isLimitReached()) return;
   if (isNumberInList()) return;
 
   try {
-    isLoading.value = true;
+    store.setIsLoading(true);
     const data = await getInfo({
       documentNumber,
     });
@@ -102,18 +69,15 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
         number: data.Number,
         status: data.Status,
       };
-      updateParcelsRef(parcelsArray);
-      parcelsArray.value.push(newObject);
-      setParcelRefToLS(parcelsArray);
-      store.setIsLimit();
+      store.addParcel(newObject);
     }
-    isLoading.value = false;
+    store.setIsLoading(false);
   } catch (e) {
     toast.error(e, {
       autoClose: 2000,
     });
-    isLoading.value = false;
-    info.value = null;
+    store.setIsLoading(false);
+    store.setDetails(null);
   }
 };
 </script>
@@ -123,19 +87,14 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
     <AppContainer>
       <AppList
         :checkIsEmptyListAndToggle="checkIsEmptyListAndToggle"
-        :updateParcels="updateParcels"
-        :parcelsArray="parcelsArray"
-        :deleteItemFromLS="deleteItemFromLS"
         :showForm="showForm"
         :isFormShown="isFormShown"
       />
       <div :class="isFormShown ? 'wrapper-shown' : 'wrapper-hidden'">
         <AppForm
-          @documentNumber="handleDocumentNumber"
           :class="isFormShown ? 'form-shown' : 'form-hidden'"
           :showPhone="false"
-          :setInfoData="setInfoData"
-          :isLoading="isLoading"
+          :setDetailsData="setDetailsData"
         />
       </div>
     </AppContainer>

@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import AppDeleteButton from '../shared/App-DeleteButton.vue';
+import { useParcelsStore } from '../../store/parcels';
 
 const props = defineProps<{
   number: string;
   status: string;
-  deleteItemFromLS: (number: string) => void;
 }>();
 
 const router = useRouter();
 
+const store = useParcelsStore();
+
 const setParcelNumberToInput = () => {
-  localStorage.setItem('currentNumber', JSON.stringify(props.number));
+  store.setCurrentParcelNumber(props.number);
   router.push('/details');
 };
 </script>
@@ -20,7 +22,7 @@ const setParcelNumberToInput = () => {
   <div @click="setParcelNumberToInput" class="wrapper">
     <p>{{ number }}</p>
     <p>{{ status }}</p>
-    <AppDeleteButton @click.stop="deleteItemFromLS(number)" />
+    <AppDeleteButton @click.stop="store.removeParcel(number)" />
   </div>
 </template>
 

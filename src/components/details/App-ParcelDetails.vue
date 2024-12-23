@@ -1,34 +1,34 @@
 <script setup lang="ts">
 import AppDetailsListItem from './App-DetailsListItem.vue';
 
-defineProps<{ info: TrackingDocument }>();
+defineProps<{ details: TrackingDocument }>();
 </script>
 
 <template>
   <div
     v-if="
-      info.Status ||
-      info.CargoDescriptionString ||
-      info.PaymentMethod ||
-      info.DateCreated ||
-      info.ActualDeliveryDate
+      details.Status ||
+      details.CargoDescriptionString ||
+      details.PaymentMethod ||
+      details.DateCreated ||
+      details.ActualDeliveryDate
     "
   >
     <h3>Інформація про посилку</h3>
     <ul>
-      <AppDetailsListItem :infoString="info.Status"
+      <AppDetailsListItem :detailsString="details.Status"
         >Статус:
       </AppDetailsListItem>
-      <AppDetailsListItem :infoString="info.CargoDescriptionString"
+      <AppDetailsListItem :detailsString="details.CargoDescriptionString"
         >Назва:
       </AppDetailsListItem>
-      <AppDetailsListItem :infoString="info.PaymentMethod"
+      <AppDetailsListItem :detailsString="details.PaymentMethod"
         >Спосіб оплати:
       </AppDetailsListItem>
-      <AppDetailsListItem :infoString="info.DateCreated"
+      <AppDetailsListItem :detailsString="details.DateCreated"
         >Створено:
       </AppDetailsListItem>
-      <AppDetailsListItem :infoString="info.ActualDeliveryDate"
+      <AppDetailsListItem :detailsString="details.ActualDeliveryDate"
         >Доставлено:
       </AppDetailsListItem>
     </ul>

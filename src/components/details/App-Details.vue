@@ -4,20 +4,20 @@ import AppRecipientDetails from './App-RecipientDetails.vue';
 import AppSenderDetails from './App-SenderDetails.vue';
 
 defineProps<{
-  info: TrackingDocument;
+  details: TrackingDocument;
 }>();
 </script>
 
 <template>
-  <div class="info">
-    <AppParcelDetails :info="info" />
-    <AppRecipientDetails :info="info" />
-    <AppSenderDetails :info="info" />
+  <div class="details">
+    <AppParcelDetails :details="details" />
+    <AppRecipientDetails :details="details" />
+    <AppSenderDetails :details="details" />
   </div>
 </template>
 
 <style scoped>
-.info {
+.details {
   display: flex;
   flex-direction: column;
   gap: 8px;

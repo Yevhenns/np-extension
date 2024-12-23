@@ -1,80 +1,59 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
 import AppContainer from '../components/layout/App-Container.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import AppDetails from '../components/details/App-Details.vue';
-import {
-  setParcelRefToLS,
-  updateParcelsRef,
-} from '../helpers/parcelsStorageActions';
-import {
-  setCurrentNumberLS,
-  updateCurrentNumberRef,
-} from '../helpers/currentNumberStorageActions';
 import { useParcelsStore } from '../store/parcels.ts';
 import { toast } from 'vue3-toastify';
 
-const info = ref<TrackingDocument | null>(null);
-const parcelsArray = ref<ParcelShortInfo[]>([]);
-const isLoading = ref(false);
-const documentNumber = ref('');
-const documentNumberFromLS = ref('');
-
 const store = useParcelsStore();
 
-const updateParcels = () => updateParcelsRef(parcelsArray);
-
-onMounted(() => {
-  updateParcels();
-  updateCurrentNumberRef(documentNumberFromLS);
-  store.setIsLimit();
-});
-
-const handleDocumentNumber = (value: string) => {
-  documentNumber.value = value;
-};
-
-const checkIsNumberInListOrSetToLS = (data: TrackingDocument) => {
-  if (parcelsArray.value.some(item => item.number === documentNumber.value)) {
-    return;
+const checkIsNumberInList = () => {
+  if (
+    store.parcelsArray.some(item => item.number === store.currentParcelNumber)
+  ) {
+    return true;
   }
   if (store.isLimit) {
     toast.warn('Ви досягли ліміту в списку посилок', {
       autoClose: 2000,
     });
-    return;
-  } else {
-    const newObject: ParcelShortInfo = {
-      number: data.Number,
-      status: data.Status,
-    };
-    parcelsArray.value.push(newObject);
-    setParcelRefToLS(parcelsArray);
+    return true;
   }
+  return false;
 };
 
-const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
+const addParcelTolist = (data: TrackingDocument) => {
+  if (checkIsNumberInList()) return;
+
+  const newObject: ParcelShortInfo = {
+    number: data.Number,
+    status: data.Status,
+  };
+  store.addParcel(newObject);
+};
+
+const setDetailsData = async ({
+  documentNumber,
+  phoneNumber,
+}: FetchInfoProps) => {
   try {
-    isLoading.value = true;
+    store.setIsLoading(true);
     const data = await getInfo({
       documentNumber,
       phoneNumber,
     });
-
     if (data) {
-      info.value = data;
-      checkIsNumberInListOrSetToLS(data);
-      setCurrentNumberLS(documentNumber);
-      store.setIsLimit();
+      store.setDetails(data);
+      addParcelTolist(data);
     }
-    isLoading.value = false;
+    store.setIsLoading(false);
   } catch (e) {
     toast.error(e, {
       autoClose: 2000,
     });
-    isLoading.value = false;
-    info.value = null;
+    store.setIsLoading(false);
+    store.setDetails(null);
   }
 };
 </script>
@@ -82,14 +61,8 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
 <template>
   <div class="page">
     <AppContainer>
-      <AppForm
-        showPhone
-        :documentNumberFromLS="documentNumberFromLS"
-        @documentNumber="handleDocumentNumber"
-        :setInfoData="setInfoData"
-        :isLoading="isLoading"
-      />
-      <AppDetails :info="info" v-if="info" />
+      <AppForm :setDetailsData="setDetailsData" showPhone />
+      <AppDetails :details="store.details" v-if="store.details" />
     </AppContainer>
   </div>
 </template>
