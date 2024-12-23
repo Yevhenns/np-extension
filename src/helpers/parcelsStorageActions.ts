@@ -20,3 +20,7 @@ export const getIsLimit = () => {
     : 0;
   return storedParcelsLength >= 5 ? true : false;
 };
+
+export const resetParcels = () => {
+  localStorage.setItem('parcels', JSON.stringify([]));
+};

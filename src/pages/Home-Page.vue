@@ -10,6 +10,7 @@ import {
   updateParcelsRef,
 } from '../helpers/parcelsStorageActions';
 import { toast } from 'vue3-toastify';
+import AppListModal from '../components/list/App-ListModal.vue';
 
 const info = ref<TrackingDocument | null>(null);
 const parcelsArray = ref<ParcelShortInfo[]>([]);
@@ -17,6 +18,7 @@ const isLoading = ref(false);
 const isFormShown = ref(false);
 const documentNumber = ref('');
 const isLimit = ref(false);
+const isModalShown = ref(false);
 
 const setIsLimit = () => (isLimit.value = getIsLimit());
 
@@ -29,6 +31,10 @@ onMounted(() => {
 
 watch(parcelsArray, () => {
   setIsLimit();
+});
+
+watch(isModalShown, () => {
+  updateParcels();
 });
 
 const showForm = () => {
@@ -68,6 +74,21 @@ const isLimitReached = () => {
   return false;
 };
 
+const toggleModal = () => {
+  isModalShown.value = !isModalShown.value;
+};
+
+const checkIsEmptyListAndToggle = () => {
+  if (parcelsArray.value.length === 0) {
+    toast.warn('Немає що видаляти', {
+      autoClose: 2000,
+    });
+    return;
+  } else {
+    toggleModal();
+  }
+};
+
 const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   if (isLimitReached()) return;
   if (isNumberInList()) return;
@@ -102,6 +123,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
   <div>
     <AppContainer>
       <AppList
+        :checkIsEmptyListAndToggle="checkIsEmptyListAndToggle"
         :isLimit="isLimit"
         :updateParcels="updateParcels"
         :parcelsArray="parcelsArray"
@@ -119,6 +141,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
         />
       </div>
     </AppContainer>
+    <AppListModal v-if="isModalShown" :toggleModal="toggleModal" />
   </div>
 </template>
 

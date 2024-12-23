@@ -12,7 +12,7 @@ const router = useRouter();
 
 const setParcelNumberToInput = () => {
   localStorage.setItem('currentNumber', JSON.stringify(props.number));
-  router.push('/info');
+  router.push('/details');
 };
 </script>
 

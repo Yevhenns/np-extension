@@ -12,6 +12,7 @@ const props = defineProps<{
   showForm: () => void;
   isFormShown: boolean;
   isLimit: boolean;
+  checkIsEmptyListAndToggle: () => void;
 }>();
 
 const isEmptyList = () => {
@@ -74,6 +75,7 @@ const refreshParelsStatus = async () => {
     />
   </div>
   <AppButtonsSet
+    :checkIsEmptyListAndToggle="checkIsEmptyListAndToggle"
     :showForm="showForm"
     :isFormShown="isFormShown"
     :isLoading="isLoading"

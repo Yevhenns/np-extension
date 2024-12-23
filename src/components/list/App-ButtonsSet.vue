@@ -6,6 +6,7 @@ defineProps<{
   isFormShown: boolean;
   isLoading: boolean;
   refreshParelsStatus: () => Promise<void>;
+  checkIsEmptyListAndToggle: () => void;
 }>();
 </script>
 
@@ -26,6 +27,10 @@ defineProps<{
         :class="isLoading && 'pi-spin'"
         style="font-size: 16px"
       ></i>
+    </AppButton>
+    <AppButton @click="checkIsEmptyListAndToggle">
+      Очистити
+      <i class="pi pi-times-circle icon" style="font-size: 16px"></i>
     </AppButton>
   </div>
 </template>
