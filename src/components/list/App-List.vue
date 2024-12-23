@@ -4,6 +4,7 @@ import AppListItem from './App-ListItem.vue';
 import AppButtonsSet from './App-ButtonsSet.vue';
 import { refreshStatus } from '../../api/refreshStatus';
 import { toast } from 'vue3-toastify';
+import { useParcelsStore } from '../../store/parcels';
 
 const props = defineProps<{
   updateParcels: () => void;
@@ -11,9 +12,10 @@ const props = defineProps<{
   deleteItemFromLS: (number: string) => void;
   showForm: () => void;
   isFormShown: boolean;
-  isLimit: boolean;
   checkIsEmptyListAndToggle: () => void;
 }>();
+
+const store = useParcelsStore();
 
 const isEmptyList = () => {
   return props.parcelsArray.length === 0 ? true : false;
@@ -61,8 +63,8 @@ const refreshParelsStatus = async () => {
 <template>
   <p v-if="!isEmptyList()">Список посилок</p>
   <p v-if="isEmptyList()">Список порожній</p>
-  <p v-if="props.isLimit" class="limit-text">Ліміт збереження досягнуто</p>
-  <p v-if="props.isLimit" class="limit-text">
+  <p v-if="store.isLimit" class="limit-text">Ліміт збереження досягнуто</p>
+  <p v-if="store.isLimit" class="limit-text">
     Видаліть зайве, щоб мати можливість зберігати посилки
   </p>
   <div class="list-wrapper">

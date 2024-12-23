@@ -5,32 +5,31 @@ import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
 import {
-  getIsLimit,
   setParcelRefToLS,
   updateParcelsRef,
 } from '../helpers/parcelsStorageActions';
-import { toast } from 'vue3-toastify';
 import AppListModal from '../components/list/App-ListModal.vue';
+import { useParcelsStore } from '../store/parcels.ts';
+import { toast } from 'vue3-toastify';
 
 const info = ref<TrackingDocument | null>(null);
 const parcelsArray = ref<ParcelShortInfo[]>([]);
 const isLoading = ref(false);
 const isFormShown = ref(false);
 const documentNumber = ref('');
-const isLimit = ref(false);
 const isModalShown = ref(false);
 
-const setIsLimit = () => (isLimit.value = getIsLimit());
+const store = useParcelsStore();
 
 const updateParcels = () => updateParcelsRef(parcelsArray);
 
 onMounted(() => {
   updateParcels();
-  setIsLimit();
+  store.setIsLimit();
 });
 
 watch(parcelsArray, () => {
-  setIsLimit();
+  store.setIsLimit();
 });
 
 watch(isModalShown, () => {
@@ -65,7 +64,7 @@ const isNumberInList = () => {
 };
 
 const isLimitReached = () => {
-  if (isLimit.value) {
+  if (store.isLimit) {
     toast.warn('Ви досягли ліміту в списку посилок', {
       autoClose: 2000,
     });
@@ -106,7 +105,7 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
       updateParcelsRef(parcelsArray);
       parcelsArray.value.push(newObject);
       setParcelRefToLS(parcelsArray);
-      setIsLimit();
+      store.setIsLimit();
     }
     isLoading.value = false;
   } catch (e) {
@@ -124,7 +123,6 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
     <AppContainer>
       <AppList
         :checkIsEmptyListAndToggle="checkIsEmptyListAndToggle"
-        :isLimit="isLimit"
         :updateParcels="updateParcels"
         :parcelsArray="parcelsArray"
         :deleteItemFromLS="deleteItemFromLS"
