@@ -64,8 +64,6 @@ defineExpose({ unmaskedValue });
 </template>
 
 <style scoped>
-@import '../../variables.css';
-
 .input-wrapper {
   position: relative;
 }

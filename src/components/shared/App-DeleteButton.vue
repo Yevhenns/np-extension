@@ -7,8 +7,6 @@
 </template>
 
 <style scoped>
-@import '../../variables.css';
-
 .button-close {
   position: absolute;
   right: 0;

@@ -31,8 +31,6 @@ defineProps<{
 </template>
 
 <style scoped>
-@import '../../variables.css';
-
 .buttons-set {
   display: flex;
   gap: 16px;

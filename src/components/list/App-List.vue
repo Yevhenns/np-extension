@@ -82,8 +82,6 @@ const refreshParelsStatus = async () => {
 </template>
 
 <style scoped>
-@import '../../variables.css';
-
 .list-wrapper {
   display: flex;
   flex-direction: column;

@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 import { FetchInfoProps, getInfo } from '../api/getInfo';
 import AppContainer from '../components/layout/App-Container.vue';
 import AppForm from '../components/shared/App-Form.vue';
-import AppInfo from '../components/info/App-Info.vue';
+import AppDetails from '../components/details/App-Details.vue';
 import {
   getIsLimit,
   setParcelRefToLS,
@@ -90,7 +90,7 @@ const setInfoData = async ({ documentNumber, phoneNumber }: FetchInfoProps) => {
         :setInfoData="setInfoData"
         :isLoading="isLoading"
       />
-      <AppInfo :info="info" v-if="info" />
+      <AppDetails :info="info" v-if="info" />
     </AppContainer>
   </div>
 </template>

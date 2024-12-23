@@ -123,8 +123,6 @@ const setInfoData = async ({ documentNumber }: FetchInfoProps) => {
 </template>
 
 <style scoped>
-@import '../variables.css';
-
 .wrapper-shown {
   overflow: visible;
   transition: var(--transition);

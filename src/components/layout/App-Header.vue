@@ -16,7 +16,7 @@ import AppContainer from './App-Container.vue';
         <RouterLink class="nav-link" active-class="active" to="/"
           >Список посилок</RouterLink
         >
-        <RouterLink class="nav-link" active-class="active" to="/info"
+        <RouterLink class="nav-link" active-class="active" to="/details"
           >Про посилку</RouterLink
         >
       </div>
@@ -25,8 +25,6 @@ import AppContainer from './App-Container.vue';
 </template>
 
 <style scoped>
-@import '../../variables.css';
-
 .header {
   border-bottom: var(--secondary-border);
 }

@@ -14,8 +14,6 @@ defineProps<{
 </template>
 
 <style scoped>
-@import '../../variables.css';
-
 .button {
   background-color: var(--main-color);
   color: var(--main-bg);

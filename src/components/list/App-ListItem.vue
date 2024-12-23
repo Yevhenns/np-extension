@@ -25,8 +25,6 @@ const setParcelNumberToInput = () => {
 </template>
 
 <style scoped>
-@import '../../variables.css';
-
 .wrapper {
   position: relative;
   border: var(--secondary-border);

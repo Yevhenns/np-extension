@@ -5,8 +5,6 @@
 </template>
 
 <style scoped>
-@import '../../variables.css';
-
 .spinner {
   width: 26px;
   height: 26px;

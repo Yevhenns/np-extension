@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppInfoListItem from './App-InfoListItem.vue';
+import AppDetailsListItem from './App-DetailsListItem.vue';
 
 defineProps<{ info: TrackingDocument }>();
 </script>
@@ -15,18 +15,18 @@ defineProps<{ info: TrackingDocument }>();
   >
     <h3>Інформація про одержувача</h3>
     <ul>
-      <AppInfoListItem :infoString="info.CityRecipient"
+      <AppDetailsListItem :infoString="info.CityRecipient"
         >Місто:
-      </AppInfoListItem>
-      <AppInfoListItem :infoString="info.WarehouseRecipient"
+      </AppDetailsListItem>
+      <AppDetailsListItem :infoString="info.WarehouseRecipient"
         >Адреса:
-      </AppInfoListItem>
-      <AppInfoListItem :infoString="info.RecipientFullNameEW"
+      </AppDetailsListItem>
+      <AppDetailsListItem :infoString="info.RecipientFullNameEW"
         >ПІБ:
-      </AppInfoListItem>
-      <AppInfoListItem :infoString="info.PhoneRecipient"
+      </AppDetailsListItem>
+      <AppDetailsListItem :infoString="info.PhoneRecipient"
         >Номер:
-      </AppInfoListItem>
+      </AppDetailsListItem>
     </ul>
   </div>
 </template>
