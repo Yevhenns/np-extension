@@ -57,27 +57,31 @@ const refreshParelsStatus = async () => {
 </script>
 
 <template>
-  <h3 v-if="!isEmptyList()">Список посилок</h3>
-  <h3 v-if="isEmptyList()">Список порожній</h3>
-  <p v-if="store.isLimit" class="limit-text">Ліміт збереження досягнуто</p>
-  <p v-if="store.isLimit" class="limit-text">
-    Видаліть зайве, щоб мати можливість зберігати посилки
-  </p>
-  <div class="list-wrapper">
-    <AppListItem
-      v-for="parcel in store.parcelsArray"
-      :key="parcel.number"
-      :number="parcel.number"
-      :status="parcel.status"
+  <div>
+    <h3 class="text" v-if="!isEmptyList()">Список посилок</h3>
+    <h3 class="text" v-if="isEmptyList()">Список порожній</h3>
+    <p v-if="store.isLimit" class="limit-text text">
+      Ліміт збереження досягнуто
+    </p>
+    <p v-if="store.isLimit" class="limit-text text">
+      Видаліть зайве, щоб мати можливість зберігати посилки
+    </p>
+    <div class="list-wrapper">
+      <AppListItem
+        v-for="parcel in store.parcelsArray"
+        :key="parcel.number"
+        :number="parcel.number"
+        :status="parcel.status"
+      />
+    </div>
+    <AppButtonsSet
+      :isLoadingRefresh="isLoadingRefresh"
+      :checkIsEmptyListAndToggle="checkIsEmptyListAndToggle"
+      :showForm="showForm"
+      :isFormShown="isFormShown"
+      :refreshParelsStatus="refreshParelsStatus"
     />
   </div>
-  <AppButtonsSet
-    :isLoadingRefresh="isLoadingRefresh"
-    :checkIsEmptyListAndToggle="checkIsEmptyListAndToggle"
-    :showForm="showForm"
-    :isFormShown="isFormShown"
-    :refreshParelsStatus="refreshParelsStatus"
-  />
 </template>
 
 <style scoped>
@@ -85,6 +89,11 @@ const refreshParelsStatus = async () => {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  margin-bottom: 16px;
+}
+
+.text {
+  margin-bottom: 4px;
 }
 
 .limit-text {

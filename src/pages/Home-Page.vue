@@ -83,8 +83,8 @@ const setDetailsData = async ({ documentNumber }: GetDetailsProps) => {
 </script>
 
 <template>
-  <div>
-    <AppContainer>
+  <AppContainer>
+    <div>
       <AppList
         :checkIsEmptyListAndToggle="checkIsEmptyListAndToggle"
         :showForm="showForm"
@@ -98,15 +98,16 @@ const setDetailsData = async ({ documentNumber }: GetDetailsProps) => {
           :setDetailsData="setDetailsData"
         />
       </div>
-    </AppContainer>
-    <teleport to="body">
-      <AppListModal v-if="isModalShown" :toggleModal="toggleModal" />
-    </teleport>
-  </div>
+    </div>
+  </AppContainer>
+  <teleport to="body">
+    <AppListModal v-if="isModalShown" :toggleModal="toggleModal" />
+  </teleport>
 </template>
 
 <style scoped>
 .wrapper-shown {
+  margin-top: 4px;
   overflow: visible;
   transition: var(--transition);
   transform: translateY(0);
