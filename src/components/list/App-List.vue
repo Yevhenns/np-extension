@@ -57,8 +57,8 @@ const refreshParelsStatus = async () => {
 </script>
 
 <template>
-  <p v-if="!isEmptyList()">Список посилок</p>
-  <p v-if="isEmptyList()">Список порожній</p>
+  <h3 v-if="!isEmptyList()">Список посилок</h3>
+  <h3 v-if="isEmptyList()">Список порожній</h3>
   <p v-if="store.isLimit" class="limit-text">Ліміт збереження досягнуто</p>
   <p v-if="store.isLimit" class="limit-text">
     Видаліть зайве, щоб мати можливість зберігати посилки
