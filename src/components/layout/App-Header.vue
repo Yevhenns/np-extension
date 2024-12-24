@@ -60,6 +60,7 @@ import AppContainer from './App-Container.vue';
   display: inline-block;
   padding: 8px;
   transition: var(--transition);
+  font-size: 14px;
 }
 
 .nav-link:hover,
