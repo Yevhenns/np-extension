@@ -12,6 +12,8 @@ export default [
         ...globals.browser,
         TrackingDocument: 'readonly',
         ParcelShortInfo: 'readonly',
+        GetDetailsProps: 'readonly',
+        RefreshStatusProps: 'readonly',
       },
     },
   },

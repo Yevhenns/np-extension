@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { FetchInfoProps, getInfo } from '../api/getInfo';
 import AppContainer from '../components/layout/App-Container.vue';
 import AppForm from '../components/shared/App-Form.vue';
 import AppDetails from '../components/details/App-Details.vue';
 import { useParcelsStore } from '../store/parcels.ts';
 import { toast } from 'vue3-toastify';
+import { getDetails } from '../api/details.ts';
 
 const store = useParcelsStore();
 
@@ -36,10 +36,10 @@ const addParcelTolist = (data: TrackingDocument) => {
 const setDetailsData = async ({
   documentNumber,
   phoneNumber,
-}: FetchInfoProps) => {
+}: GetDetailsProps) => {
   try {
     store.setIsLoading(true);
-    const data = await getInfo({
+    const data = await getDetails({
       documentNumber,
       phoneNumber,
     });

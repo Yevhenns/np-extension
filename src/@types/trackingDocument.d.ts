@@ -22,3 +22,12 @@ interface ParcelShortInfo {
   number: string;
   status: string;
 }
+
+interface GetDetailsProps {
+  documentNumber: string;
+  phoneNumber?: string;
+}
+
+interface RefreshStatusProps {
+  documentNumbers: string[];
+}

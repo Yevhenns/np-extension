@@ -2,9 +2,9 @@
 import { computed } from 'vue';
 import AppListItem from './App-ListItem.vue';
 import AppButtonsSet from './App-ButtonsSet.vue';
-import { refreshStatus } from '../../api/refreshStatus';
-import { toast } from 'vue3-toastify';
 import { useParcelsStore } from '../../store/parcels';
+import { refreshStatus } from '../../api/details';
+import { toast } from 'vue3-toastify';
 
 defineProps<{
   showForm: () => void;

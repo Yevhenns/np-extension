@@ -3,10 +3,10 @@ import { ref } from 'vue';
 import AppContainer from '../components/layout/App-Container.vue';
 import AppList from '../components/list/App-List.vue';
 import AppForm from '../components/shared/App-Form.vue';
-import { FetchInfoProps, getInfo } from '../api/getInfo';
 import AppListModal from '../components/list/App-ListModal.vue';
 import { useParcelsStore } from '../store/parcels.ts';
 import { toast } from 'vue3-toastify';
+import { getDetails } from '../api/details.ts';
 
 const isFormShown = ref(false);
 const isModalShown = ref(false);
@@ -55,13 +55,13 @@ const checkIsEmptyListAndToggle = () => {
   }
 };
 
-const setDetailsData = async ({ documentNumber }: FetchInfoProps) => {
+const setDetailsData = async ({ documentNumber }: GetDetailsProps) => {
   if (isLimitReached()) return;
   if (isNumberInList()) return;
 
   try {
     store.setIsLoading(true);
-    const data = await getInfo({
+    const data = await getDetails({
       documentNumber,
     });
     if (data) {

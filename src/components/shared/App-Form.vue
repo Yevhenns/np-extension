@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { FetchInfoProps } from '../../api/getInfo';
 import AppInput from '../shared/App-Input.vue';
 import AppButton from '../shared/App-Button.vue';
 import { useParcelsStore } from '../../store/parcels';
@@ -9,7 +8,7 @@ defineProps<{
   setDetailsData: ({
     documentNumber,
     phoneNumber,
-  }: FetchInfoProps) => Promise<void>;
+  }: GetDetailsProps) => Promise<void>;
   showPhone: boolean;
   saveNumber: boolean;
 }>();
