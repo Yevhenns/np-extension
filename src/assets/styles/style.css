@@ -33,7 +33,7 @@ body {
   justify-content: center;
   text-align: center;
   margin: 0;
-  font-family: 'Regular';
+  font-family: 'Regular', sans-serif;
 }
 
 #app {
