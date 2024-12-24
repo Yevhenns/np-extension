@@ -36,7 +36,7 @@ export const useParcelsStore = defineStore('parcel', () => {
   }
 
   function setIsLimit() {
-    isLimit.value = parcelsArray.value.length >= 5;
+    isLimit.value = parcelsArray.value.length >= 100;
   }
 
   function setIsLoading(value: boolean) {
