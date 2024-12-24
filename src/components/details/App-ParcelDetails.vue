@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import AppDetailsListItem from './App-DetailsListItem.vue';
 
-defineProps<{ details: TrackingDocument }>();
+const props = defineProps<{ details: TrackingDocument }>();
+
+const formattedDateCreated = () => props.details.DateCreated.replace(' ', ', ');
+const cutActualDeliveryDate = () => props.details.ActualDeliveryDate.split(' ');
+const reversedActualDeliveryDate = () =>
+  cutActualDeliveryDate()[0].split('-').reverse().join('-') +
+  ', ' +
+  cutActualDeliveryDate()[1];
 </script>
 
 <template>
@@ -25,10 +32,14 @@ defineProps<{ details: TrackingDocument }>();
       <AppDetailsListItem :detailsString="details.PaymentMethod"
         >Спосіб оплати:
       </AppDetailsListItem>
-      <AppDetailsListItem :detailsString="details.DateCreated"
+      <AppDetailsListItem
+        v-if="details.DateCreated"
+        :detailsString="formattedDateCreated()"
         >Створено:
       </AppDetailsListItem>
-      <AppDetailsListItem :detailsString="details.ActualDeliveryDate"
+      <AppDetailsListItem
+        v-if="details.ActualDeliveryDate"
+        :detailsString="reversedActualDeliveryDate()"
         >Доставлено:
       </AppDetailsListItem>
     </ul>
