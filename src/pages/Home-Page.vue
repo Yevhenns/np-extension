@@ -99,7 +99,9 @@ const setDetailsData = async ({ documentNumber }: GetDetailsProps) => {
         />
       </div>
     </AppContainer>
-    <AppListModal v-if="isModalShown" :toggleModal="toggleModal" />
+    <teleport to="body">
+      <AppListModal v-if="isModalShown" :toggleModal="toggleModal" />
+    </teleport>
   </div>
 </template>
 
