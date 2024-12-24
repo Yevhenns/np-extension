@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import AppContainer from '../components/layout/App-Container.vue';
-import AppList from '../components/list/App-List.vue';
-import AppForm from '../components/shared/App-Form.vue';
-import AppListModal from '../components/list/App-ListModal.vue';
-import { useParcelsStore } from '../store/parcels.ts';
-import { getDetails } from '../api/details.ts';
+import AppContainer from '@/components/layout/App-Container.vue';
+import AppList from '@/components/list/App-List.vue';
+import AppForm from '@/components/shared/App-Form.vue';
+import AppListModal from '@/components/list/App-ListModal.vue';
+import { useParcelsStore } from '@/store/parcels.ts';
+import { getDetails } from '@/api/details';
 import { toast } from 'vue3-toastify';
 
 const isFormShown = ref(false);

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import AppContainer from '../components/layout/App-Container.vue';
-import AppForm from '../components/shared/App-Form.vue';
-import AppDetails from '../components/details/App-Details.vue';
-import { useParcelsStore } from '../store/parcels.ts';
-import { getDetails } from '../api/details.ts';
+import AppContainer from '@/components/layout/App-Container.vue';
+import AppForm from '@/components/shared/App-Form.vue';
+import AppDetails from '@/components/details/App-Details.vue';
+import { useParcelsStore } from '@/store/parcels.ts';
+import { getDetails } from '@/api/details.ts';
 import { toast } from 'vue3-toastify';
 
 const store = useParcelsStore();

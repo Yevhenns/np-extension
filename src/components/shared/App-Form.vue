@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import AppInput from '../shared/App-Input.vue';
-import AppButton from '../shared/App-Button.vue';
-import { useParcelsStore } from '../../store/parcels';
+import AppInput from './App-Input.vue';
+import AppButton from './App-Button.vue';
+import { useParcelsStore } from '@/store/parcels';
 
 defineProps<{
   setDetailsData: ({
