@@ -1,6 +1,6 @@
 import { ref } from 'vue';
-import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
+import { useLocalStorage } from '@vueuse/core';
 
 export const useParcelsStore = defineStore('parcel', () => {
   const details = ref<TrackingDocument | null>(null);

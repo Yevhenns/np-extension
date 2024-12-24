@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useParcelsStore } from '../../store/parcels';
 import AppButton from '../shared/App-Button.vue';
+import { useParcelsStore } from '../../store/parcels';
 import { toast } from 'vue3-toastify';
 
 const props = defineProps<{

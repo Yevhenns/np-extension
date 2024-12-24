@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { vMaska } from 'maska/vue';
 import AppDeleteButton from './App-DeleteButton.vue';
+import { vMaska } from 'maska/vue';
 
 const props = defineProps<{
   placeholder: string;

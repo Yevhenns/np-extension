@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import AppListItem from './App-ListItem.vue';
 import AppButtonsSet from './App-ButtonsSet.vue';
 import { useParcelsStore } from '../../store/parcels';
@@ -13,6 +13,8 @@ defineProps<{
 }>();
 
 const store = useParcelsStore();
+
+const isLoadingRefresh = ref(false);
 
 const isEmptyList = () => {
   return store.parcelsArray.length === 0 ? true : false;
@@ -30,7 +32,7 @@ const refreshParelsStatus = async () => {
     return;
   }
   try {
-    store.setIsLoading(true);
+    isLoadingRefresh.value = true;
     const data = await refreshStatus({
       documentNumbers: parcelsNumbersArray.value,
     });
@@ -43,13 +45,13 @@ const refreshParelsStatus = async () => {
       toast.success('Статуси успішно оновлено', {
         autoClose: 2000,
       });
-      store.setIsLoading(false);
+      isLoadingRefresh.value = false;
     }
   } catch (e) {
     toast.error(e, {
       autoClose: 2000,
     });
-    store.setIsLoading(false);
+    isLoadingRefresh.value = false;
   }
 };
 </script>
@@ -70,6 +72,7 @@ const refreshParelsStatus = async () => {
     />
   </div>
   <AppButtonsSet
+    :isLoadingRefresh="isLoadingRefresh"
     :checkIsEmptyListAndToggle="checkIsEmptyListAndToggle"
     :showForm="showForm"
     :isFormShown="isFormShown"

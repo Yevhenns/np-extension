@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useParcelsStore } from '../../store/parcels';
 import AppButton from '../shared/App-Button.vue';
 
 defineProps<{
@@ -7,9 +6,8 @@ defineProps<{
   isFormShown: boolean;
   refreshParelsStatus: () => Promise<void>;
   checkIsEmptyListAndToggle: () => void;
+  isLoadingRefresh: boolean;
 }>();
-
-const store = useParcelsStore();
 </script>
 
 <template>
@@ -26,7 +24,7 @@ const store = useParcelsStore();
       Оновити
       <i
         class="pi pi-sync icon"
-        :class="store.isLoading && 'pi-spin'"
+        :class="isLoadingRefresh && 'pi-spin'"
         style="font-size: 16px"
       ></i>
     </AppButton>
