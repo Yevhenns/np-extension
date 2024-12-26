@@ -19,7 +19,7 @@ import AppContainer from '@/components/layout/App-Container.vue';
         <li>
           <p>
             Всі дані введені користувачем зберігаються лише в local storage,
-            та/або відправляються напряму на
+            та/або відправляються напряму через
             <a
               class="np-link"
               href="https://developers.novaposhta.ua/"

@@ -1,7 +1,7 @@
 import { useSettingsStore } from '@/store/settings';
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL;
+axios.defaults.baseURL = 'https://api.novaposhta.ua/v2.0/json/';
 
 export const getDetails = async ({
   documentNumber,
@@ -23,7 +23,7 @@ export const getDetails = async ({
     },
   };
   try {
-    const response = await axios.post(API_URL, requestBody);
+    const response = await axios.post('', requestBody);
     if (response.data.success) {
       return response.data.data[0] as TrackingDocument;
     } else {
@@ -48,7 +48,7 @@ export const refreshStatus = async ({
     },
   };
   try {
-    const response = await axios.post(API_URL, requestBody);
+    const response = await axios.post('', requestBody);
     if (response.data.success) {
       return response.data.data as TrackingDocument[];
     } else {
