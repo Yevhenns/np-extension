@@ -30,6 +30,12 @@ import AppContainer from '@/components/layout/App-Container.vue';
             для отримання актуальної інформації.
           </p>
         </li>
+        <li>
+          <p>
+            Використовується автовидалення, якщо користувач не заходив в
+            застосунок від 14 днів.
+          </p>
+        </li>
       </ul>
     </AppContainer>
   </div>

@@ -12,6 +12,7 @@
   "dependencies": {
     "@vueuse/core": "^12.2.0",
     "axios": "^1.7.9",
+    "dayjs": "^1.11.13",
     "maska": "^3.0.4",
     "pinia": "^2.3.0",
     "primeicons": "^7.0.0",

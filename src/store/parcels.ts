@@ -59,6 +59,13 @@ export const useParcelsStore = defineStore('parcel', () => {
     currentPhoneNumber.value = '';
   }
 
+  function resetAll() {
+    parcelsArray.value = [];
+    currentParcelNumber.value = '';
+    currentPhoneNumber.value = '';
+    setIsLimit();
+  }
+
   return {
     details,
     parcelsArray,
@@ -76,5 +83,6 @@ export const useParcelsStore = defineStore('parcel', () => {
     deleteCurrentParcelNumber,
     setCurrentPhoneNumber,
     deleteCurrentPhoneNumber,
+    resetAll,
   };
 });
