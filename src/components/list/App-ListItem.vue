@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router';
 import AppDeleteButton from '../shared/App-DeleteButton.vue';
 import { useParcelsStore } from '../../store/parcels';
+import { playSound } from '@/helpers/playSound';
 
 const props = defineProps<{
   number: string;
@@ -13,8 +14,14 @@ const router = useRouter();
 const store = useParcelsStore();
 
 const setParcelNumberToInput = () => {
+  playSound('click');
   store.setCurrentParcelNumber(props.number);
   router.push('/details');
+};
+
+const deleteParcel = (number: string) => {
+  playSound('click');
+  store.removeParcel(number);
 };
 </script>
 
@@ -22,7 +29,7 @@ const setParcelNumberToInput = () => {
   <div @click="setParcelNumberToInput" class="wrapper">
     <p>{{ number }}</p>
     <p>{{ status }}</p>
-    <AppDeleteButton @click.stop="store.removeParcel(number)" />
+    <AppDeleteButton @click.stop="deleteParcel(number)" />
   </div>
 </template>
 

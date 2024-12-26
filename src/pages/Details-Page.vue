@@ -16,6 +16,7 @@ const checkIsNumberInList = () => {
     return true;
   }
   if (store.isLimit) {
+    playSound('error');
     toast.warn('Ви досягли ліміту в списку посилок', {
       autoClose: 2000,
     });
@@ -52,6 +53,7 @@ const setDetailsData = async ({
     }
     store.setIsLoading(false);
   } catch (e) {
+    playSound('error');
     toast.error(e, {
       autoClose: 2000,
     });

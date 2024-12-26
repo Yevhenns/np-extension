@@ -1,30 +1,53 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import AppContainer from './App-Container.vue';
+import { playSound } from '@/helpers/playSound';
+
+const playClickSound = () => {
+  playSound('click');
+};
 </script>
 
 <template>
   <header class="header">
     <AppContainer :style="{ paddingBottom: '0' }">
       <div class="header-heading">
-        <RouterLink to="/">
+        <RouterLink to="/" @click="playClickSound">
           <img src="/logo.png" alt="logo" width="32" height="32" />
         </RouterLink>
         <h3>Трекінг посилок НП</h3>
         <div class="info-settings-wrapper">
-          <RouterLink to="/info" class="info-link" active-class="active">
+          <RouterLink
+            to="/info"
+            @click="playClickSound"
+            class="info-link"
+            active-class="active"
+          >
             <i class="pi pi-info-circle" style="font-size: 24px"></i>
           </RouterLink>
-          <RouterLink to="/settings" class="info-link" active-class="active">
+          <RouterLink
+            to="/settings"
+            @click="playClickSound"
+            class="info-link"
+            active-class="active"
+          >
             <i class="pi pi-cog" style="font-size: 24px"></i>
           </RouterLink>
         </div>
       </div>
       <div class="header-nav">
-        <RouterLink class="nav-link" active-class="active" to="/"
+        <RouterLink
+          class="nav-link"
+          @click="playClickSound"
+          active-class="active"
+          to="/"
           >Список посилок</RouterLink
         >
-        <RouterLink class="nav-link" active-class="active" to="/details"
+        <RouterLink
+          class="nav-link"
+          @click="playClickSound"
+          active-class="active"
+          to="/details"
           >Про посилку</RouterLink
         >
       </div>

@@ -15,6 +15,7 @@ const isModalShown = ref(false);
 const store = useParcelsStore();
 
 const showForm = () => {
+  playSound('click');
   isFormShown.value = !isFormShown.value;
 };
 
@@ -46,6 +47,7 @@ const isLimitReached = () => {
 
 const toggleModal = () => {
   isModalShown.value = !isModalShown.value;
+  playSound('click');
 };
 
 const checkIsEmptyListAndToggle = () => {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { playClick } from '@/helpers/playSound';
 import { ref } from 'vue';
 
 const props = defineProps<{
@@ -10,6 +11,7 @@ const emit = defineEmits(['switchValue']);
 const isChecked = ref(props.switchValue);
 
 const onInputChange = () => {
+  playClick();
   emit('switchValue', isChecked.value);
 };
 </script>

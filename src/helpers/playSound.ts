@@ -12,3 +12,9 @@ export const playSound = (type: 'click' | 'error') => {
   if (type === 'click') audioClick.play();
   if (type === 'error') audioFail.play();
 };
+
+export const playClick = () => {
+  const store = useSettingsStore();
+
+  if (!store.isSoundOn) audioClick.play();
+};

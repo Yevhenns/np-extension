@@ -5,6 +5,7 @@ import AppButtonsSet from './App-ButtonsSet.vue';
 import { useParcelsStore } from '../../store/parcels';
 import { refreshStatus } from '../../api/details';
 import { toast } from 'vue3-toastify';
+import { playSound } from '@/helpers/playSound';
 
 defineProps<{
   showForm: () => void;
@@ -26,11 +27,13 @@ const parcelsNumbersArray = computed(() =>
 
 const refreshParelsStatus = async () => {
   if (parcelsNumbersArray.value.length === 0) {
+    playSound('error');
     toast.warn('Немає що оновлювати', {
       autoClose: 2000,
     });
     return;
   }
+  playSound('click');
   try {
     isLoadingRefresh.value = true;
     const data = await refreshStatus({
@@ -48,6 +51,7 @@ const refreshParelsStatus = async () => {
       isLoadingRefresh.value = false;
     }
   } catch (e) {
+    playSound('error');
     toast.error(e, {
       autoClose: 2000,
     });
