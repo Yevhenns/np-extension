@@ -62,7 +62,6 @@ const refreshParelsStatus = async () => {
 
 <template>
   <div>
-    <h3 class="text" v-if="!isEmptyList()">Список посилок</h3>
     <h3 class="text" v-if="isEmptyList()">Список порожній</h3>
     <p v-if="store.isLimit" class="limit-text text">
       Ліміт збереження досягнуто

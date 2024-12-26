@@ -1,14 +1,16 @@
+import { useSettingsStore } from '@/store/settings';
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
-const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const getDetails = async ({
   documentNumber,
   phoneNumber,
 }: GetDetailsProps) => {
+  const store = useSettingsStore();
+
   const requestBody = {
-    apiKey: API_KEY,
+    apiKey: store.API_KEY,
     modelName: 'TrackingDocumentGeneral',
     calledMethod: 'getStatusDocuments',
     methodProperties: {
@@ -35,8 +37,10 @@ export const getDetails = async ({
 export const refreshStatus = async ({
   documentNumbers,
 }: RefreshStatusProps) => {
+  const store = useSettingsStore();
+
   const requestBody = {
-    apiKey: API_KEY,
+    apiKey: store.API_KEY,
     modelName: 'TrackingDocumentGeneral',
     calledMethod: 'getStatusDocuments',
     methodProperties: {

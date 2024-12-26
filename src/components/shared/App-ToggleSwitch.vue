@@ -3,6 +3,7 @@ import { playClick } from '@/helpers/playSound';
 import { ref } from 'vue';
 
 const props = defineProps<{
+  id: string;
   switchValue: boolean;
 }>();
 
@@ -18,7 +19,12 @@ const onInputChange = () => {
 
 <template>
   <label class="switch">
-    <input type="checkbox" @change="onInputChange" v-model="isChecked" />
+    <input
+      type="checkbox"
+      :id="id"
+      @change="onInputChange"
+      v-model="isChecked"
+    />
     <span class="slider"></span>
   </label>
 </template>

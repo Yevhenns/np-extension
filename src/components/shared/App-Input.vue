@@ -7,7 +7,7 @@ import { playSound } from '@/helpers/playSound';
 const props = defineProps<{
   placeholder: string;
   id: string;
-  mask: string;
+  mask?: string;
   errorMessage?: string;
   currentdocumentNumber?: string;
   saveNumber: boolean;
@@ -44,7 +44,7 @@ defineExpose({ unmaskedValue });
 </script>
 
 <template>
-  <label>
+  <label class="label">
     <slot></slot>
     <div class="input-wrapper">
       <input
@@ -64,6 +64,10 @@ defineExpose({ unmaskedValue });
 </template>
 
 <style scoped>
+.label {
+  text-align: left;
+}
+
 .input-wrapper {
   position: relative;
 }
