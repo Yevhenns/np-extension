@@ -11,9 +11,14 @@ import AppContainer from './App-Container.vue';
           <img src="/logo.png" alt="logo" width="32" height="32" />
         </RouterLink>
         <h3>Трекінг посилок НП</h3>
-        <RouterLink to="/info" class="info-link" active-class="active">
-          <i class="pi pi-info-circle" style="font-size: 24px"></i>
-        </RouterLink>
+        <div class="info-settings-wrapper">
+          <RouterLink to="/info" class="info-link" active-class="active">
+            <i class="pi pi-info-circle" style="font-size: 24px"></i>
+          </RouterLink>
+          <RouterLink to="/settings" class="info-link" active-class="active">
+            <i class="pi pi-cog" style="font-size: 24px"></i>
+          </RouterLink>
+        </div>
       </div>
       <div class="header-nav">
         <RouterLink class="nav-link" active-class="active" to="/"
@@ -36,6 +41,11 @@ import AppContainer from './App-Container.vue';
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.info-settings-wrapper {
+  display: flex;
+  gap: 16px;
 }
 
 .header-nav {
