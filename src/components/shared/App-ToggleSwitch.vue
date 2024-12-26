@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+const props = defineProps<{
+  switchValue: boolean;
+}>();
+
 const emit = defineEmits(['switchValue']);
 
-const isChecked = ref(true);
+const isChecked = ref(props.switchValue);
 
 const onInputChange = () => {
   emit('switchValue', isChecked.value);
@@ -11,9 +15,8 @@ const onInputChange = () => {
 </script>
 
 <template>
-  <p>{{ isChecked }}</p>
   <label class="switch">
-    <input type="checkbox" checked @input="onInputChange" v-model="isChecked" />
+    <input type="checkbox" @change="onInputChange" v-model="isChecked" />
     <span class="slider"></span>
   </label>
 </template>
