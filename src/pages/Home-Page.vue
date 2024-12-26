@@ -6,6 +6,7 @@ import AppForm from '@/components/shared/App-Form.vue';
 import AppListModal from '@/components/list/App-ListModal.vue';
 import { useParcelsStore } from '@/store/parcels.ts';
 import { getDetails } from '@/api/details';
+import { playSound } from '../helpers/playSound.ts';
 import { toast } from 'vue3-toastify';
 
 const isFormShown = ref(false);
@@ -14,6 +15,7 @@ const isModalShown = ref(false);
 const store = useParcelsStore();
 
 const showForm = () => {
+  playSound('click');
   isFormShown.value = !isFormShown.value;
 };
 
@@ -21,6 +23,7 @@ const isNumberInList = () => {
   if (
     store.parcelsArray.some(item => item.number === store.currentParcelNumber)
   ) {
+    playSound('error');
     store.setIsLoading(false);
     toast.warn('Посилка вже у списку', {
       autoClose: 2000,
@@ -32,20 +35,24 @@ const isNumberInList = () => {
 
 const isLimitReached = () => {
   if (store.isLimit) {
+    playSound('error');
     toast.warn('Ви досягли ліміту в списку посилок', {
       autoClose: 2000,
     });
     return true;
   }
+
   return false;
 };
 
 const toggleModal = () => {
   isModalShown.value = !isModalShown.value;
+  playSound('click');
 };
 
 const checkIsEmptyListAndToggle = () => {
   if (store.parcelsArray.length === 0) {
+    playSound('error');
     toast.warn('Немає що видаляти', {
       autoClose: 2000,
     });
@@ -58,6 +65,8 @@ const checkIsEmptyListAndToggle = () => {
 const setDetailsData = async ({ documentNumber }: GetDetailsProps) => {
   if (isLimitReached()) return;
   if (isNumberInList()) return;
+
+  playSound('click');
 
   try {
     store.setIsLoading(true);
@@ -73,6 +82,7 @@ const setDetailsData = async ({ documentNumber }: GetDetailsProps) => {
     }
     store.setIsLoading(false);
   } catch (e) {
+    playSound('error');
     toast.error(e, {
       autoClose: 2000,
     });

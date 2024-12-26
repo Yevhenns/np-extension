@@ -4,6 +4,7 @@ import AppForm from '@/components/shared/App-Form.vue';
 import AppDetails from '@/components/details/App-Details.vue';
 import { useParcelsStore } from '@/store/parcels.ts';
 import { getDetails } from '@/api/details.ts';
+import { playSound } from '@/helpers/playSound';
 import { toast } from 'vue3-toastify';
 
 const store = useParcelsStore();
@@ -15,6 +16,7 @@ const checkIsNumberInList = () => {
     return true;
   }
   if (store.isLimit) {
+    playSound('error');
     toast.warn('Ви досягли ліміту в списку посилок', {
       autoClose: 2000,
     });
@@ -37,6 +39,8 @@ const setDetailsData = async ({
   documentNumber,
   phoneNumber,
 }: GetDetailsProps) => {
+  playSound('click');
+
   try {
     store.setIsLoading(true);
     const data = await getDetails({
@@ -49,6 +53,7 @@ const setDetailsData = async ({
     }
     store.setIsLoading(false);
   } catch (e) {
+    playSound('error');
     toast.error(e, {
       autoClose: 2000,
     });

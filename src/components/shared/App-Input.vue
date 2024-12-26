@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue';
 import AppDeleteButton from './App-DeleteButton.vue';
 import { vMaska } from 'maska/vue';
+import { playSound } from '@/helpers/playSound';
 
 const props = defineProps<{
   placeholder: string;
@@ -29,6 +30,7 @@ watch(
 );
 
 const clearValue = () => {
+  playSound('click');
   unmaskedValue.value = '';
   maskedValue.value = '';
   emit('inputValue', unmaskedValue.value);
