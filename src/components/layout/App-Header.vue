@@ -12,7 +12,11 @@ const playClickSound = () => {
   <header class="header">
     <AppContainer :style="{ paddingBottom: '0' }">
       <div class="header-heading">
-        <RouterLink to="/" @click="playClickSound">
+        <RouterLink
+          to="/"
+          @click="playClickSound"
+          aria-label="link to main mage"
+        >
           <img src="/logo.png" alt="logo" width="32" height="32" />
         </RouterLink>
         <h3>Трекінг посилок НП</h3>
@@ -22,6 +26,7 @@ const playClickSound = () => {
             @click="playClickSound"
             class="info-link"
             active-class="active"
+            aria-label="link to info mage"
           >
             <i class="pi pi-info-circle" style="font-size: 24px"></i>
           </RouterLink>
@@ -30,6 +35,7 @@ const playClickSound = () => {
             @click="playClickSound"
             class="info-link"
             active-class="active"
+            aria-label="link to settings mage"
           >
             <i class="pi pi-cog" style="font-size: 24px"></i>
           </RouterLink>
@@ -37,10 +43,11 @@ const playClickSound = () => {
       </div>
       <div class="header-nav">
         <RouterLink
-          class="nav-link"
-          @click="playClickSound"
-          active-class="active"
           to="/"
+          @click="playClickSound"
+          class="nav-link"
+          active-class="active"
+          aria-label="link to main mage"
           >Список посилок</RouterLink
         >
         <RouterLink

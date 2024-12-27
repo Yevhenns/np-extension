@@ -25,6 +25,7 @@ import AppContainer from '@/components/layout/App-Container.vue';
               href="https://developers.novaposhta.ua/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="link to novaposhta API"
               >АРI компанії «Нова пошта»</a
             >
             для отримання актуальної інформації.
