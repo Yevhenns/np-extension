@@ -1,17 +1,27 @@
 import { createWebHistory, createRouter } from 'vue-router';
-import HomePage from '@/pages/Home-Page.vue';
-import DetailsPage from '@/pages/Details-Page.vue';
-import SettingsPage from '@/pages/Settings-Page.vue';
-import InfoPage from '@/pages/Info-Page.vue';
+
+const HomePage = () => import('@/pages/Home-Page.vue');
+const DetailsPage = () => import('@/pages/Details-Page.vue');
+const SettingsPage = () => import('@/pages/Settings-Page.vue');
+const InfoPage = () => import('@/pages/Info-Page.vue');
 
 const routes = [
-  { path: '/', component: HomePage },
+  {
+    path: '/',
+    component: HomePage,
+  },
   {
     path: '/details',
     component: DetailsPage,
   },
-  { path: '/settings', component: SettingsPage },
-  { path: '/info', component: InfoPage },
+  {
+    path: '/settings',
+    component: SettingsPage,
+  },
+  {
+    path: '/info',
+    component: InfoPage,
+  },
 ];
 
 const router = createRouter({
