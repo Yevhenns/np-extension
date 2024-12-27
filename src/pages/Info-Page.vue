@@ -8,7 +8,10 @@ import AppContainer from '@/components/layout/App-Container.vue';
       <h3>Інформація</h3>
       <ul class="text-wrapper">
         <li>
-          <p>Застосунок для пошуку інформації про відправлення Нової Пошти.</p>
+          <p>
+            Google Chrome розширення для пошуку інформації про відправлення
+            Нової Пошти.
+          </p>
         </li>
         <li>
           <p>
