@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import { useColorMode } from '@vueuse/core';
 import AppHeader from '@/components/layout/App-Header.vue';
 import { useSettingsStore } from '@/store/settings';
 import { useParcelsStore } from './store/parcels';
@@ -28,7 +29,17 @@ const lastDateHandler = () => {
   }
 };
 
-onMounted(() => lastDateHandler());
+onMounted(() => {
+  lastDateHandler();
+  useColorMode({
+    modes: {
+      auto: 'auto',
+      light: 'light',
+      dark: 'dark',
+    },
+    attribute: 'theme',
+  });
+});
 </script>
 
 <template>

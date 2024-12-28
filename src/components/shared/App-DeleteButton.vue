@@ -20,7 +20,7 @@
 }
 
 .pi-times {
-  color: var(--black-color);
+  color: var(--main-text-color);
   transition: var(--transition);
 }
 
