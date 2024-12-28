@@ -54,6 +54,7 @@ defineExpose({ unmaskedValue });
         class="input"
         v-maska:unmaskedValue.unmasked="mask"
         v-model="maskedValue"
+        autocomplete="on"
       />
       <AppDeleteButton @click="clearValue" />
     </div>

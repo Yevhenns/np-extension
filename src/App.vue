@@ -18,6 +18,8 @@ const difference = dateToday.diff(lastDate, 'day');
 
 const lastDateHandler = () => {
   if (settingsStore.lastDate.length === 0) {
+    settingsStore.resetAll();
+    parcelsStore.resetAll();
     settingsStore.setLastDay(dateToday.toISOString());
   }
   if (settingsStore.lastDate.length !== 0 && difference < 1) {
@@ -26,6 +28,7 @@ const lastDateHandler = () => {
   if (settingsStore.lastDate.length !== 0 && difference >= 1) {
     settingsStore.resetAll();
     parcelsStore.resetAll();
+    settingsStore.setLastDay(dateToday.toISOString());
   }
 };
 
