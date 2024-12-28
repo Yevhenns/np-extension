@@ -1,18 +1,6 @@
 @import './variables.css';
 @import './fonts.css';
 
-:root {
-  font-family: Inter, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: var(--black-color);
-  background-color: var(--main-bg);
-}
-
-html {
-  box-sizing: border-box;
-}
 *,
 *:before,
 *:after {
@@ -35,6 +23,9 @@ body {
   margin: 0;
   font-family: 'Regular', sans-serif;
   position: relative;
+  box-sizing: border-box;
+  color: var(--black-color);
+  background-color: var(--main-bg);
 }
 
 #app {

@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import AppContainer from '@/components/layout/App-Container.vue';
+import AppButton from '@/components/shared/App-Button.vue';
 import AppInput from '@/components/shared/App-Input.vue';
 import AppToggleSwitch from '@/components/shared/App-ToggleSwitch.vue';
 import { useSettingsStore } from '@/store/settings';
+import { useColorMode, useLocalStorage } from '@vueuse/core';
 
 const store = useSettingsStore();
+
+const currentTheme = useLocalStorage('vueuse-color-scheme', 'auto');
 
 const onInputChange = (value: boolean) => {
   store.toggleIsSoundOn(value);
@@ -12,6 +16,27 @@ const onInputChange = (value: boolean) => {
 
 const setApiKey = (value: string) => {
   store.setApiKey(value);
+};
+
+const colorMode = useColorMode({
+  modes: {
+    auto: 'auto',
+    light: 'light',
+    dark: 'dark',
+  },
+  attribute: 'theme',
+});
+
+const formattedTheme = () => {
+  if (currentTheme.value === 'auto') {
+    return 'Авто';
+  }
+  if (currentTheme.value === 'light') {
+    return 'Світла';
+  }
+  if (currentTheme.value === 'dark') {
+    return 'Темна';
+  }
 };
 </script>
 
@@ -26,6 +51,14 @@ const setApiKey = (value: string) => {
           @switchValue="onInputChange"
           :switchValue="store.isSoundOn"
         />
+      </div>
+      <div class="switch-wrapper">
+        <span>Тема: {{ formattedTheme() }}</span>
+        <div class="theme-buttons">
+          <AppButton @click="colorMode = 'dark'">Темна</AppButton>
+          <AppButton @click="colorMode = 'auto'">Авто</AppButton>
+          <AppButton @click="colorMode = 'light'">Світла</AppButton>
+        </div>
       </div>
       <AppInput
         @inputValue="setApiKey"
@@ -45,5 +78,10 @@ const setApiKey = (value: string) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.theme-buttons {
+  display: flex;
+  gap: 8px;
 }
 </style>

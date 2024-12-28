@@ -93,7 +93,7 @@ defineExpose({ unmaskedValue });
 }
 
 .error {
-  color: rgb(236, 65, 59);
+  color: var(--error-color);
   height: 20px;
 }
 </style>
