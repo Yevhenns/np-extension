@@ -29,18 +29,6 @@ const colorMode = useColorMode({
   disableTransition: false,
 });
 
-const formattedTheme = () => {
-  if (currentTheme.value === 'auto') {
-    return 'Авто';
-  }
-  if (currentTheme.value === 'light') {
-    return 'Світла';
-  }
-  if (currentTheme.value === 'dark') {
-    return 'Темна';
-  }
-};
-
 const clickThemeButton = (theme: 'auto' | 'light' | 'dark') => {
   playSound('click');
   colorMode.value = theme;
@@ -60,7 +48,7 @@ const clickThemeButton = (theme: 'auto' | 'light' | 'dark') => {
         />
       </div>
       <div class="switch-wrapper">
-        <span>Тема: {{ formattedTheme() }}</span>
+        <span>Тема</span>
         <div class="theme-buttons">
           <AppButton
             :class="currentTheme === 'dark' ? 'active' : ''"
