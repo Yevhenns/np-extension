@@ -18,7 +18,7 @@ const onInputChange = () => {
 </script>
 
 <template>
-  <label class="switch" for="id">
+  <label class="switch" :for="id">
     <input
       type="checkbox"
       :id="id"
