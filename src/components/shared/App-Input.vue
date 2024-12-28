@@ -82,6 +82,8 @@ defineExpose({ unmaskedValue });
   padding-right: 30px;
   width: 100%;
   transition: var(--transition);
+  background-color: var(--main-bg);
+  color: var(--black-color);
 }
 
 .input:hover {
