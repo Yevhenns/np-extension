@@ -18,7 +18,7 @@ defineProps<{
   background-color: var(--main-color);
   color: var(--main-bg);
   height: 32px;
-  border: none;
+  border: var(--button-border);
   border-radius: 4px;
   display: flex;
   align-items: center;

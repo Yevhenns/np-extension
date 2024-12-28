@@ -56,9 +56,21 @@ const formattedTheme = () => {
       <div class="switch-wrapper">
         <span>Тема: {{ formattedTheme() }}</span>
         <div class="theme-buttons">
-          <AppButton @click="colorMode = 'dark'">Темна</AppButton>
-          <AppButton @click="colorMode = 'auto'">Авто</AppButton>
-          <AppButton @click="colorMode = 'light'">Світла</AppButton>
+          <AppButton
+            :class="currentTheme === 'dark' ? 'active' : ''"
+            @click="colorMode = 'dark'"
+            >Темна</AppButton
+          >
+          <AppButton
+            :class="currentTheme === 'auto' ? 'active' : ''"
+            @click="colorMode = 'auto'"
+            >Авто</AppButton
+          >
+          <AppButton
+            :class="currentTheme === 'light' ? 'active' : ''"
+            @click="colorMode = 'light'"
+            >Світла</AppButton
+          >
         </div>
       </div>
       <AppInput
@@ -84,5 +96,10 @@ const formattedTheme = () => {
 .theme-buttons {
   display: flex;
   gap: 8px;
+}
+
+.active {
+  border: var(--button-border-acive);
+  transition: var(--transition);
 }
 </style>
