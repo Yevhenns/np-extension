@@ -1,32 +1,26 @@
 :root {
+  --disabled-color: #969696;
   --error-color: #f23c32;
+  --main-border: 2px solid var(--main-color);
+  --secondary-border: 1px solid var(--disabled-color);
+  --light-border: 2px solid var(--main-bg);
+  --box-shadow: 0 4px 6px var(--box-shadow-color);
+  --box-shadow-active: 0 -4px 6px var(--box-shadow-color);
   --transition: all 250ms linear;
 }
 
 [theme='light'] {
   --main-bg: #fafafa;
   --main-color: #f23c32;
-  --black-color: #000000;
+  --main-text-color: #000000;
   --disabled-bg: #c8c8c8;
-  --disabled-color: #969696;
   --box-shadow-color: rgba(0, 0, 0, 0.2);
-  --main-border: 2px solid var(--main-color);
-  --secondary-border: 1px solid var(--disabled-color);
-  --light-border: 2px solid var(--main-bg);
-  --box-shadow: 0 4px 6px var(--box-shadow-color);
-  --box-shadow-active: 0 -4px 6px var(--box-shadow-color);
 }
 
 [theme='dark'] {
   --main-bg: #1a1a1a;
   --main-color: #f7574f;
-  --black-color: #ffffff;
+  --main-text-color: #ffffff;
   --disabled-bg: #3a3a3a;
-  --disabled-color: #6b6b6b;
   --box-shadow-color: rgba(255, 255, 255, 0.2);
-  --main-border: 2px solid var(--main-color);
-  --secondary-border: 1px solid var(--disabled-color);
-  --light-border: 2px solid var(--main-bg);
-  --box-shadow: 0 4px 6px var(--box-shadow-color);
-  --box-shadow-active: 0 -4px 6px var(--box-shadow-color);
 }
