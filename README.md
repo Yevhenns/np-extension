@@ -8,5 +8,5 @@ Google Chrome extension for tracking parcels.
 
 ![image](https://github.com/user-attachments/assets/5ae0001e-ef5b-4051-9152-1be84c8fec16)
 ![image](https://github.com/user-attachments/assets/77cb723e-1d58-4258-8e7b-d81aba0679f3)
-![image](https://github.com/user-attachments/assets/d9ecb25e-64ab-4e0a-8f33-e33feaaefce2)
+![image](https://github.com/user-attachments/assets/4a0368c5-26b7-4027-9922-4217c03096a3)
 ![image](https://github.com/user-attachments/assets/33801a32-5630-4886-9a85-1a07293d9687)
