@@ -7,6 +7,13 @@
   box-sizing: inherit;
 }
 
+[theme='dark'],
+[theme='light'] {
+  color: var(--main-text-color);
+  background-color: var(--main-bg);
+  transition: var(--transition);
+}
+
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -24,8 +31,6 @@ body {
   font-family: 'Regular', sans-serif;
   position: relative;
   box-sizing: border-box;
-  color: var(--main-text-color);
-  background-color: var(--main-bg);
 }
 
 #app {

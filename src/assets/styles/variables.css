@@ -6,7 +6,7 @@
   --light-border: 2px solid var(--main-bg);
   --box-shadow: 0 4px 6px var(--box-shadow-color);
   --box-shadow-active: 0 -4px 6px var(--box-shadow-color);
-  --transition: all 250ms linear;
+  --transition: all 250ms ease;
 }
 
 [theme='light'] {

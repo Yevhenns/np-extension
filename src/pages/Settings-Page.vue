@@ -25,6 +25,7 @@ const colorMode = useColorMode({
     dark: 'dark',
   },
   attribute: 'theme',
+  disableTransition: false,
 });
 
 const formattedTheme = () => {
