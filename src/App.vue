@@ -19,10 +19,10 @@ const lastDateHandler = () => {
   if (settingsStore.lastDate.length === 0) {
     settingsStore.setLastDay(dateToday.toISOString());
   }
-  if (difference < 1) {
+  if (settingsStore.lastDate.length !== 0 && difference < 1) {
     settingsStore.setLastDay(dateToday.toISOString());
   }
-  if (difference >= 1) {
+  if (settingsStore.lastDate.length !== 0 && difference >= 1) {
     settingsStore.resetAll();
     parcelsStore.resetAll();
   }
