@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { useColorMode, useLocalStorage } from '@vueuse/core';
 import AppContainer from '@/components/layout/App-Container.vue';
 import AppButton from '@/components/shared/App-Button.vue';
 import AppInput from '@/components/shared/App-Input.vue';
 import AppToggleSwitch from '@/components/shared/App-ToggleSwitch.vue';
 import { useSettingsStore } from '@/store/settings';
-import { useColorMode, useLocalStorage } from '@vueuse/core';
+import { playSound } from '@/helpers/playSound';
 
 const store = useSettingsStore();
 
@@ -39,6 +40,11 @@ const formattedTheme = () => {
     return 'Темна';
   }
 };
+
+const clickThemeButton = (theme: 'auto' | 'light' | 'dark') => {
+  playSound('click');
+  colorMode.value = theme;
+};
 </script>
 
 <template>
@@ -58,17 +64,17 @@ const formattedTheme = () => {
         <div class="theme-buttons">
           <AppButton
             :class="currentTheme === 'dark' ? 'active' : ''"
-            @click="colorMode = 'dark'"
+            @click="clickThemeButton('dark')"
             >Темна</AppButton
           >
           <AppButton
             :class="currentTheme === 'auto' ? 'active' : ''"
-            @click="colorMode = 'auto'"
+            @click="clickThemeButton('auto')"
             >Авто</AppButton
           >
           <AppButton
             :class="currentTheme === 'light' ? 'active' : ''"
-            @click="colorMode = 'light'"
+            @click="clickThemeButton('light')"
             >Світла</AppButton
           >
         </div>
