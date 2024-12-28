@@ -46,7 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class>
+  <div>
     <AppHeader />
     <router-view></router-view>
   </div>

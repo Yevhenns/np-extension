@@ -97,6 +97,8 @@ const clickThemeButton = (theme: 'auto' | 'light' | 'dark') => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: var(--secondary-border);
+  padding: 10px 0;
 }
 
 .theme-buttons {

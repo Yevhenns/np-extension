@@ -38,6 +38,7 @@ defineProps<{
   color: var(--disabled-color);
   cursor: not-allowed;
   box-shadow: none;
+  border: var(--button-border-disabled);
 }
 
 .pi {

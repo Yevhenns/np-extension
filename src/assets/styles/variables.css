@@ -5,6 +5,7 @@
   --secondary-border: 1px solid var(--disabled-color);
   --button-border: 2px solid var(--main-color);
   --button-border-acive: 2px solid var(--main-text-color);
+  --button-border-disabled: 2px solid var(--disabled-bg);
   --light-border: 2px solid var(--main-bg);
   --box-shadow: 0 4px 6px var(--box-shadow-color);
   --box-shadow-active: 0 -4px 6px var(--box-shadow-color);
