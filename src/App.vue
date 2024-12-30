@@ -15,21 +15,17 @@ const dateToday = dayjs();
 const lastDate = dayjs(settingsStore.lastDate);
 
 const difference = dateToday.diff(lastDate, 'day');
-console.log('difference', difference);
 
 const lastDateHandler = () => {
   if (settingsStore.lastDate.length === 0) {
-    console.log(1);
     settingsStore.resetAll();
     parcelsStore.resetAll();
     settingsStore.setLastDay(dateToday.toISOString());
   }
-  if (settingsStore.lastDate.length !== 0 && difference < 1) {
-    console.log(2);
+  if (settingsStore.lastDate.length !== 0 && difference < 14) {
     settingsStore.setLastDay(dateToday.toISOString());
   }
-  if (settingsStore.lastDate.length !== 0 && difference >= 1) {
-    console.log(3);
+  if (settingsStore.lastDate.length !== 0 && difference >= 14) {
     settingsStore.resetAll();
     parcelsStore.resetAll();
     settingsStore.setLastDay(dateToday.toISOString());
