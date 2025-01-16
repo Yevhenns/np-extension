@@ -67,36 +67,36 @@ defineExpose({ unmaskedValue });
 <style scoped>
 .label {
   text-align: left;
-}
 
-.input-wrapper {
-  position: relative;
-}
+  .input-wrapper {
+    position: relative;
+  }
 
-.input {
-  height: 32px;
-  font-size: 20px;
-  border-radius: 4px;
-  border: var(--main-border);
-  outline: none;
-  padding-left: 8px;
-  padding-right: 30px;
-  width: 100%;
-  transition: var(--transition);
-  background-color: var(--main-bg);
-  color: var(--black-color);
-}
+  .input {
+    height: 32px;
+    font-size: 20px;
+    border-radius: 4px;
+    border: var(--main-border);
+    outline: none;
+    padding-left: 8px;
+    padding-right: 30px;
+    width: 100%;
+    transition: var(--transition);
+    background-color: var(--main-bg);
+    color: var(--black-color);
 
-.input:hover {
-  box-shadow: var(--box-shadow);
-}
+    &:hover {
+      box-shadow: var(--box-shadow);
+    }
 
-.input:focus {
-  box-shadow: var(--box-shadow-active);
-}
+    &:focus {
+      box-shadow: var(--box-shadow-active);
+    }
+  }
 
-.error {
-  color: var(--error-color);
-  height: 20px;
+  .error {
+    color: var(--error-color);
+    height: 20px;
+  }
 }
 </style>

@@ -35,43 +35,43 @@ const onInputChange = () => {
   display: inline-block;
   width: 40px;
   height: 24px;
-}
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+  & input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--disabled-bg);
-  transition: var(--transition);
-  border-radius: 34px;
-}
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--disabled-bg);
+    transition: var(--transition);
+    border-radius: 34px;
 
-.slider:before {
-  position: absolute;
-  content: '';
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: var(--main-bg);
-  transition: var(--transition);
-  border-radius: 50%;
-}
+    &:before {
+      position: absolute;
+      content: '';
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: var(--main-bg);
+      transition: var(--transition);
+      border-radius: 50%;
+    }
+  }
 
-input:checked + .slider {
-  background-color: var(--main-color);
-}
+  input:checked + .slider {
+    background-color: var(--main-color);
+  }
 
-input:checked + .slider:before {
-  transform: translateX(16px);
+  input:checked + .slider:before {
+    transform: translateX(16px);
+  }
 }
 </style>

@@ -40,16 +40,16 @@ defineProps<{
   display: flex;
   gap: 16px;
   justify-content: center;
-}
 
-.icon {
-  margin-left: 6px;
-  transform: rotate(0);
-  transition: var(--transition);
-}
+  .icon {
+    margin-left: 6px;
+    transform: rotate(0);
+    transition: var(--transition);
+  }
 
-.rotate {
-  transform: rotate(180deg);
-  transition: var(--transition);
+  .rotate {
+    transform: rotate(180deg);
+    transition: var(--transition);
+  }
 }
 </style>
