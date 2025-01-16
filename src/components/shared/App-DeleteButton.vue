@@ -17,14 +17,14 @@
   cursor: pointer;
   width: 32px;
   height: 32px;
-}
 
-.pi-times {
-  color: var(--main-text-color);
-  transition: var(--transition);
-}
+  &:hover .pi-times {
+    transform: rotate(90deg);
+  }
 
-.button-close:hover .pi-times {
-  transform: rotate(90deg);
+  .pi-times {
+    color: var(--main-text-color);
+    transition: var(--transition);
+  }
 }
 </style>

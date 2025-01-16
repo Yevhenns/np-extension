@@ -41,18 +41,18 @@ const deleteAllParcels = () => {
   align-items: center;
   height: 100%;
   width: 100%;
-}
 
-.modal {
-  width: 200px;
-  padding: 24px;
-  background-color: var(--main-bg);
-  border-radius: 4px;
-}
+  .modal {
+    width: 200px;
+    padding: 24px;
+    background-color: var(--main-bg);
+    border-radius: 4px;
+  }
 
-.buttons-set {
-  margin-top: 16px;
-  display: flex;
-  gap: 16px;
+  .buttons-set {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+  }
 }
 </style>

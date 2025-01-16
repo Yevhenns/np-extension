@@ -48,10 +48,10 @@ import AppContainer from '@/components/layout/App-Container.vue';
 <style scoped>
 .text-wrapper {
   text-align: left;
-}
 
-.np-link {
-  text-decoration: underline;
-  color: var(--main-color);
+  .np-link {
+    text-decoration: underline;
+    color: var(--main-color);
+  }
 }
 </style>

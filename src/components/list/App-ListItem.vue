@@ -43,9 +43,9 @@ const deleteParcel = (number: string) => {
   border-radius: 4px;
   cursor: pointer;
   transition: var(--transition);
-}
 
-.wrapper:hover {
-  box-shadow: var(--box-shadow);
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
 }
 </style>

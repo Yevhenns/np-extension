@@ -27,21 +27,21 @@ defineProps<{
   cursor: pointer;
   transition: var(--transition);
   width: 100%;
-}
 
-.button:hover {
-  box-shadow: var(--box-shadow);
-}
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
 
-.button:disabled {
-  background-color: var(--disabled-bg);
-  color: var(--disabled-color);
-  cursor: not-allowed;
-  box-shadow: none;
-  border: var(--button-border-disabled);
-}
+  &:disabled {
+    background-color: var(--disabled-bg);
+    color: var(--disabled-color);
+    cursor: not-allowed;
+    box-shadow: none;
+    border: var(--button-border-disabled);
+  }
 
-.pi {
-  margin-left: 6px;
+  .pi {
+    margin-left: 6px;
+  }
 }
 </style>

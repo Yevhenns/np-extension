@@ -24,7 +24,7 @@ const playClickSound = () => {
           <RouterLink
             to="/info"
             @click="playClickSound"
-            class="info-link"
+            class="info-settings-link"
             active-class="active"
             aria-label="link to info mage"
           >
@@ -33,7 +33,7 @@ const playClickSound = () => {
           <RouterLink
             to="/settings"
             @click="playClickSound"
-            class="info-link"
+            class="info-settings-link"
             active-class="active"
             aria-label="link to settings mage"
           >
@@ -65,51 +65,54 @@ const playClickSound = () => {
 <style scoped>
 .header {
   border-bottom: var(--secondary-border);
-}
 
-.header-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .header-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.info-settings-wrapper {
-  display: flex;
-  gap: 16px;
-}
+  .info-settings-wrapper {
+    display: flex;
+    gap: 16px;
+  }
 
-.header-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.info-link {
-  border-radius: 50%;
-  height: auto;
-  display: flex;
-  transition: var(--transition);
-}
+  .info-settings-link {
+    border-radius: 50%;
+    height: auto;
+    display: flex;
+    transition: var(--transition);
 
-.info-link.active {
-  color: var(--main-color);
-}
+    &:hover {
+      box-shadow: var(--box-shadow);
+    }
 
-.nav-link {
-  width: 50%;
-  display: inline-block;
-  padding: 8px;
-  transition: var(--transition);
-  font-size: 14px;
-}
+    &.active {
+      color: var(--main-color);
+    }
+  }
 
-.nav-link:hover,
-.info-link:hover {
-  box-shadow: var(--box-shadow);
-}
+  .nav-link {
+    width: 50%;
+    display: inline-block;
+    padding: 8px;
+    transition: var(--transition);
+    font-size: 14px;
 
-.nav-link.active {
-  color: var(--main-bg);
-  background-color: var(--main-color);
+    &:hover {
+      box-shadow: var(--box-shadow);
+    }
+
+    &.active {
+      color: var(--main-bg);
+      background-color: var(--main-color);
+    }
+  }
 }
 </style>
